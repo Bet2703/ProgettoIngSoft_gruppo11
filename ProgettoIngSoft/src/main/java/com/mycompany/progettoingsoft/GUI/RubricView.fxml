@@ -1,11 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.classi.RubricViewController">
-    
+<AnchorPane id="AnchorPane" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.progettoingsoft.GUI.RubricViewController">
+   <children>
+      <VBox prefHeight="700.0" prefWidth="998.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="998.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="157.0" layoutY="10.0" prefHeight="50.0" prefWidth="20.0" />
+                  <Button fx:id="importButton" mnemonicParsing="false" onAction="#importFile" prefHeight="75.0" prefWidth="150.0" text="Import">
+                     <HBox.margin>
+                        <Insets bottom="4.0" top="4.0" />
+                     </HBox.margin></Button>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="910.0" layoutY="10.0" prefHeight="50.0" prefWidth="20.0" />
+                  <Button fx:id="exportButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#exportFile" prefHeight="75.0" prefWidth="150.0" text="Export">
+                     <HBox.margin>
+                        <Insets bottom="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="300.0" text="Search ">
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="searchField" alignment="CENTER" onAction="#searchContact" prefHeight="30.0" prefWidth="300.0">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </TextField>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="300.0" />
+                  <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeRubric" prefHeight="75.0" prefWidth="150.0" text="Close">
+                     <HBox.margin>
+                        <Insets bottom="4.0" top="4.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="20.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="747.0" prefWidth="998.0">
+               <children>
+                  <VBox prefHeight="747.0" prefWidth="400.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="150.0" text="Name" />
+                        <TextField fx:id="nameField">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefWidth="150.0" text="Surname" />
+                        <TextField fx:id="surnameField" layoutX="10.0" layoutY="37.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="76.0" prefWidth="150.0" text="Number1" />
+                        <TextField fx:id="number1Field" layoutX="10.0" layoutY="103.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="142.0" prefWidth="150.0" text="Number2" />
+                        <TextField fx:id="number2Field" layoutX="10.0" layoutY="169.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="208.0" prefWidth="150.0" text="Number3" />
+                        <TextField fx:id="number3Field" layoutX="10.0" layoutY="235.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="313.0" prefWidth="150.0" text="Mail1" />
+                        <TextField fx:id="mail1Field" layoutX="10.0" layoutY="274.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="340.0" prefWidth="150.0" text="Mail2" />
+                        <TextField fx:id="mail2Field" layoutX="10.0" layoutY="367.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="406.0" prefWidth="150.0" text="Mail3" />
+                        <TextField fx:id="mail3Field" layoutX="10.0" layoutY="433.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <CheckBox fx:id="favouriteCheck" contentDisplay="CENTER" mnemonicParsing="false" onAction="#contactIsFavourite" prefWidth="200.0" text="Favourite">
+                           <VBox.margin>
+                              <Insets left="100.0" top="40.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="747.0" prefWidth="1100.0">
+                     <children>
+                        <TableView prefHeight="700.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                          <columns>
+                            <TableColumn fx:id="nameClm" prefWidth="160.0" text="Name" />
+                            <TableColumn fx:id="surnameClm" minWidth="6.0" prefWidth="160.0" text="Surname" />
+                              <TableColumn fx:id="number1Clm" minWidth="4.0" prefWidth="110.0" text="Number1" />
+                              <TableColumn fx:id="number2Clm" minWidth="0.0" prefWidth="110.0" text="Number2" />
+                              <TableColumn fx:id="number3Clm" prefWidth="110.0" text="Number3" />
+                              <TableColumn fx:id="mail1Clm" prefWidth="150.0" text="Mail1" />
+                              <TableColumn fx:id="mail2Clm" prefWidth="150.0" text="Mail2" />
+                              <TableColumn fx:id="mail3Clm" prefWidth="150.0" text="Mail3" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets left="1.0" right="1.0" />
+                           </VBox.margin>
+                        </TableView>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="addContactButton" mnemonicParsing="false" onAction="#addContact" prefHeight="50.0" prefWidth="200.0" text="AddContact">
+                                 <HBox.margin>
+                                    <Insets left="200.0" right="15.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="ModifyContactButton" mnemonicParsing="false" onAction="#modifyContact" prefHeight="50.0" prefWidth="200.0" text="ModifyContact">
+                                 <HBox.margin>
+                                    <Insets left="15.0" right="15.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="removeContactButton" mnemonicParsing="false" onAction="#removeContact" prefHeight="50.0" prefWidth="200.0" text="RemoveContact">
+                                 <HBox.margin>
+                                    <Insets left="15.0" right="15.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children></VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

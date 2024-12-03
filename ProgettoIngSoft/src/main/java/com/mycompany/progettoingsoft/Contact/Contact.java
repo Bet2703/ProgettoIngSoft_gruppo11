@@ -36,9 +36,6 @@ public class Contact implements Comparable<Contact> {
     public void setFavourite(boolean favourite) {
     }
 
-    public void setIsDangerous(boolean isDangerous) {
-    }
-
     public String getName() {
     }
 
@@ -46,10 +43,7 @@ public class Contact implements Comparable<Contact> {
     }
 
     public boolean isFavourite() {
-    }
-
-    public boolean isIsDangerous() {
-    }    
+    }  
 
     @Override
     public int compareTo(Contact o) {
