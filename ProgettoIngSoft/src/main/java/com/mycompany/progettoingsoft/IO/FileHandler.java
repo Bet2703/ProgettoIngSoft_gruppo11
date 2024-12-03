@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.progettoingsoft.Rubric;
+package com.mycompany.progettoingsoft.IO;
 
+import com.mycompany.progettoingsoft.Rubric.Rubric;
 import com.mycompany.progettoingsoft.Rubric.Rubric;
 
 /**
