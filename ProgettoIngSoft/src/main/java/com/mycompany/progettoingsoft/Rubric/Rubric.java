@@ -5,8 +5,8 @@
  */
 package com.mycompany.progettoingsoft.Rubric;
 
-import com.mycompany.classi.FileHandler;
 import com.mycompany.progettoingsoft.Contact.Contact;
+import com.mycompany.progettoingsoft.IO.FileHandler;
 import java.util.Set;
 import java.util.TreeSet;
 
