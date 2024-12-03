@@ -44,6 +44,14 @@ public class Contact implements Comparable<Contact> {
 
     public boolean isFavourite() {
     }  
+    
+    public void setNumbers(Number numbers){
+        
+    }
+    
+    public void setMails (Mail mails){
+        
+    }
 
     @Override
     public int compareTo(Contact o) {
