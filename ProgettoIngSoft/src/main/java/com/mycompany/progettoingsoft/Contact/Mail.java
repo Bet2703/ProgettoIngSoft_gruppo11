@@ -30,6 +30,10 @@ public class Mail {
         
     }
     
+    public void addMail(String mail){
+        
+    }
+    
     public String[] getMails() {
     }
     

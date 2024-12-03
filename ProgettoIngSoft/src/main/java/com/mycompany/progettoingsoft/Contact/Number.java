@@ -29,6 +29,10 @@ public class Number {
         
     }
     
+    public void addNumber(String number){
+        
+    }
+    
     public String[] getNumbers() {
         
     }
