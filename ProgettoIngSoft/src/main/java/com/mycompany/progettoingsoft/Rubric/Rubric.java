@@ -37,9 +37,6 @@ public class Rubric implements FileHandler{
 	
     public final boolean contactIsFavourite( Contact c ){
     }
-	
-    public final boolean contactIsDangerous( Contact c ){
-    }
     
     public Contact searchContact( String s ){
                    
