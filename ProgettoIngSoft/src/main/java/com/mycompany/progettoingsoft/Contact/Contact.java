@@ -18,7 +18,6 @@ public class Contact implements Comparable<Contact> {
     private Number numbers;
     private Mail mails;
     private boolean favourite;
-    private boolean isDangerous;
     
     public Contact(String name, String surname, Number numbers, Mail mails){
         this.name=name;
