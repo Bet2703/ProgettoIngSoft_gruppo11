@@ -40,7 +40,7 @@ public class Number {
      * 
      * @param[in] num1.
      * @param[in] num2.
-     * @see setNumbers(String[] numbers).
+     * @see setNumbers(String[] numbers)
      */
     public Number (String num1, String num2){
         setNumbers(new String[]{num1, num2});        
@@ -53,7 +53,7 @@ public class Number {
      * See also: setNumbers(String[] numbers).
      * 
      * @param[in] num1. 
-     * @see setNumbers(String[] numbers).
+     * @see setNumbers(String[] numbers)
      */
     public Number (String num1){
         setNumbers(new String[]{num1});        
