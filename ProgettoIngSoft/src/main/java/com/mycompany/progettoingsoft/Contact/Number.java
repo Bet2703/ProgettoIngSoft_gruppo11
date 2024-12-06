@@ -20,7 +20,7 @@ public class Number {
     /**
      * @brief Costruttore della classe Number.
      * 
-     * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri in ingresso.
+     * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri di ingresso.
      * See also: setNumbers(String[] numbers).
      * 
      * @param[in] num1.
