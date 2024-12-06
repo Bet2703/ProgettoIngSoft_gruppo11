@@ -7,8 +7,8 @@ package com.mycompany.progettoingsoft.Rubric;
 
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,7 +22,7 @@ import javafx.collections.ObservableList;
  * @author Benedetta
  */
 public class Rubric implements FileHandler{
-    private ObservableList<Contact> contacts;
+    private List<Contact> contacts;
     
     /**
      * @brief Costruttore della classe Rubric. 
@@ -30,7 +30,7 @@ public class Rubric implements FileHandler{
      * Si occupa di inizializzare la collezione. 
      */
     public Rubric() {
-	contacts = FXCollections.observableArrayList();
+	contacts = new ArrayList();
     }
     
     /**
@@ -38,7 +38,7 @@ public class Rubric implements FileHandler{
      * 
      * @return Ritorna l'insieme di contatti.
      */
-    public ObservableList<Contact> getContacts() {
+    public List<Contact> getContacts() {
         return contacts;
     }
     
