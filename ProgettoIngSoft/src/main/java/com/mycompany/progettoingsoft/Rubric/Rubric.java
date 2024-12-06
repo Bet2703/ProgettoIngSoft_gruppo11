@@ -61,7 +61,7 @@ public class Rubric implements FileHandler{
      * @pre Esiste almeno un contatto nella rubrica.
      * @post Il contatto è stato modificato.
      * 
-     * @param[in] c Il contatto da modificare.
+     * @param[inout] c Il contatto da modificare.
      * @param[in] newName Il nuovo nome.
      * @param[in] newSurname Il nuovo cognome.
      * @param[in] newNumber Il nuovo insieme di numeri.
@@ -130,7 +130,7 @@ public class Rubric implements FileHandler{
      * @pre La rubrica contiene almento un contatto da esportare. 
      * @post La rubrica viene esportata e salvata su un file.
      * 
-     * @param[in] filename 
+     * @param[inout] filename 
      */
     @Override
     public void exportContacts(String filename) {
