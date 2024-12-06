@@ -41,7 +41,7 @@ public class Contact implements Comparable<Contact> {
 
     public String getSurname() {
     }
-
+   
     public boolean isFavourite() {
     }  
     

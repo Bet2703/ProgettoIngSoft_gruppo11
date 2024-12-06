@@ -43,12 +43,12 @@ public class Rubric implements FileHandler{
     }  
     
     @Override
-    public void importContacts(String filename) {
+    public Rubric importContacts(String filename) {
         
     }
 
     @Override
-    public Rubric exportContacts(String filename) {
+    public void exportContacts(String filename) {
         
     }
 
