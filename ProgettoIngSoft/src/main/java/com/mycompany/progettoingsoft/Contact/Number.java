@@ -20,13 +20,15 @@ public class Number {
     /**
      * @brief Costruttore della classe Number.
      * 
+     * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri in ingresso.
+     * See also: setNumbers(String[] numbers)
      * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri di ingresso.
      * See also: setNumbers(String[] numbers).
      * 
      * @param[in] num1.
      * @param[in] num2.
      * @param[in] num3.
-     * @see setNumbers(String[] numbers).
+     * @see setNumbers(String[] numbers)
      */
     public Number (String num1, String num2, String num3){
         setNumbers(new String[]{num1, num2, num3});        
@@ -36,11 +38,11 @@ public class Number {
      * @brief Overload del costruttore.
      * 
      * Inizializza i numeri di telefono con le 2 stringhe che riceve come parametri in ingresso.
-     * See also: setNumbers(String[] numbers).
+     * See also: setNumbers(String[] numbers)
      * 
      * @param[in] num1.
      * @param[in] num2.
-     * @see setNumbers(String[] numbers).
+     * @see setNumbers(String[] numbers)
      */
     public Number (String num1, String num2){
         setNumbers(new String[]{num1, num2});        
@@ -50,10 +52,10 @@ public class Number {
      * @brief Overload del costruttore.
      * 
      * Inizializza il numero con la stringa che riceve come parametro in ingresso.
-     * See also: setNumbers(String[] numbers).
+     * See also: setNumbers(String[] numbers)
      * 
      * @param[in] num1. 
-     * @see setNumbers(String[] numbers).
+     * @see setNumbers(String[] numbers)
      */
     public Number (String num1){
         setNumbers(new String[]{num1});        
@@ -64,7 +66,7 @@ public class Number {
      * @brief Metodo che gestisce la set dei numeri di telefono.
      * 
      * @pre Il parametro "numbers" non deve essere null.
-     * @post la variabile "numbers" viene aggiornata con l'array passato come parametro in ingresso.
+     * @post la variabile "numbers" viene aggiornata con l'array passato come parametro di ingresso.
      * 
      * @param[inout] numbers.
      */
