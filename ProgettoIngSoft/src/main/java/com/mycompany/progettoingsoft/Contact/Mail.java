@@ -5,22 +5,17 @@
  */
 package com.mycompany.progettoingsoft.Contact;
 
-/**
- *
- * @author Benedetta
- */
 public class Mail {
     private String[] mails = new String[3];
     
     public Mail(String mail1, String mail2, String mail3){
         setMails(new String[]{mail1, mail2, mail3});
     }
-    
-    //Overload del costruttore
+
     public Mail(String mail1, String mail2){
         setMails(new String[]{mail1, mail2});
     }    
-    
+
     public Mail(String mail1){
         setMails(new String[]{mail1});
     }
