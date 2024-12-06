@@ -16,7 +16,9 @@ import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
- *
+ * @file ImportViewController.java
+ * @brief Questa classe permette di importare un file all'interno del progetto 
+ * attraverso il nome. 
  * @author andre
  */
 public class ImportViewController implements Initializable {
