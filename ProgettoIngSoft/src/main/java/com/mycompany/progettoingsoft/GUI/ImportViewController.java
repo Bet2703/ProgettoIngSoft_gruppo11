@@ -29,13 +29,16 @@ public class ImportViewController implements Initializable {
     private Button openFileButton;
 
     /**
-     * Initializes the controller class.
+     *@brief Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    /**
+     * @brief Metodo che gestisce l'import del file.
+     * @param event 
+     */
     @FXML
     private void importFile(ActionEvent event) {
     }
