@@ -23,6 +23,8 @@ public class ImportViewController implements Initializable {
 
     @FXML
     private TextField filenameField;
+    @FXML
+    private Button openFileButton;
 
     /**
      * Initializes the controller class.
@@ -31,6 +33,10 @@ public class ImportViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void importFile(ActionEvent event) {
+    }
 
     
 }
