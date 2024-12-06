@@ -13,8 +13,11 @@ import javafx.collections.ObservableList;
 
 /**
  * @file Rubric.java
- * @brief Questa classe si occupa di gestire un insieme di Contatti, 
- * mettendo a disposizione metodi per gestire una rubrica.
+ * @brief Questa classe si occupa di gestire un insieme di Contatti
+ * 
+ * Mette a disposizione metodi per gestire una rubrica, quali aggiungi contatto,
+ * modifica contatto, rimuovi contatto, ricerca di un contatto nella lista, 
+ * import ed export della rubrica.
  * 
  * @author Benedetta
  */
@@ -32,6 +35,7 @@ public class Rubric implements FileHandler{
     
     /**
      * @brief Metodo get per l'insieme di contatti. 
+     * 
      * @return Ritorna l'insieme di contatti.
      */
     public ObservableList<Contact> getContacts() {
@@ -40,7 +44,11 @@ public class Rubric implements FileHandler{
     
     /**
      * @brief Gestisce l'inserimento di un contatto nell'insieme.
-     * @param c il contatto da aggiungere all'insieme.
+     * 
+     * @pre Il contatto è stato creato.
+     * @post Il contatto viene aggiunto alla rubrica.
+     * 
+     * @param[in] c il contatto da aggiungere all'insieme.
      * @return Ritorna una valore booleano per confermare o meno l'inserimento.
      */
     public final boolean addContact(Contact c){
@@ -49,12 +57,16 @@ public class Rubric implements FileHandler{
     
     /**
      * @brief Gestisce la modifica del contatto passato come parametro.
-     * @param c Il contatto da modificare.
-     * @param newName Il nuovo nome.
-     * @param newSurname Il nuovo cognome.
-     * @param newNumber Il nuovo insieme di numeri.
-     * @param newMail Il nuovo insieme di mail.
-     * @param newFavourite Modifica il valore booleano che contrassegna il contatto come preferito.
+     * 
+     * @pre Esiste almeno un contatto nella rubrica.
+     * @post Il contatto è stato modificato.
+     * 
+     * @param[in] c Il contatto da modificare.
+     * @param[in] newName Il nuovo nome.
+     * @param[in] newSurname Il nuovo cognome.
+     * @param[in] newNumber Il nuovo insieme di numeri.
+     * @param[in] newMail Il nuovo insieme di mail.
+     * @param[in] newFavourite Modifica il valore booleano che contrassegna il contatto come preferito.
      * @return Ritorna un valore booleano per confermare o meno la modifica.
      */
     public final boolean modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite){
@@ -62,7 +74,10 @@ public class Rubric implements FileHandler{
 	
     /**
      * @brief Gestisce la rimozione del contatto passato come parametro.
-     * @param c
+     * 
+     * @pre Esiste almento un contatto nella rubrica.
+     * @post Il contatto viene rimosso dalla rubrica. 
+     * @param[in] c
      * @return Ritorna un valore booleano per confermare o meno la rimozione. 
      */
     public boolean removeContact( Contact c ){
@@ -70,15 +85,25 @@ public class Rubric implements FileHandler{
     
     /**
      * @brief Gestisce la possibilià di contrassegnare il contatto come preferito. 
-     * @param c
+     * 
+     * @pre Esiste almeno un contatto nella rubrica.
+     * @post Il contatto viene modificato e contrassegnato.
+     * 
+     * @param[in] c
      * @return Ritorna un booleano se il contatto è stato contrassegnato o meno. 
+     * 
+     * @see modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite)
      */
     public final boolean contactIsFavourite( Contact c ){
     }
     
     /**
      * @biref Gestisce la ricerca di un contatto nell'insieme.
-     * @param s La stringa da ricercare nei contatti.
+     * 
+     * @pre Esiste almeno un contatto nella rubrica. 
+     * @post Viene mostrato un sottoinsieme della rubrica.
+     * 
+     * @param[in] s La stringa da ricercare nei contatti.
      * @return Ritorna un sottoinsieme della rubrica con i contatti contenenti la stringa s.
      */
     public Rubric searchContact( String s ){
@@ -87,7 +112,11 @@ public class Rubric implements FileHandler{
     
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per importare contatti.
-     * @param filename Il nome del file da importare.
+     * 
+     * @pre Esiste un file nella directory del progetto.
+     * @post Il file viene importato e la rubrica mostrata.
+     * 
+     * @param[in] filename Il nome del file da importare.
      * @return Ritorna la rubrica contenuta nel file.
      */
     @Override
@@ -97,7 +126,11 @@ public class Rubric implements FileHandler{
     
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per esportare i contatti.
-     * @param filename 
+     * 
+     * @pre La rubrica contiene almento un contatto da esportare. 
+     * @post La rubrica viene esportata e salvata su un file.
+     * 
+     * @param[in] filename 
      */
     @Override
     public void exportContacts(String filename) {
