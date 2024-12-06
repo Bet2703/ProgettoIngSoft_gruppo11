@@ -7,21 +7,22 @@ package com.mycompany.progettoingsoft.Rubric;
 
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
-import java.util.Set;
-import java.util.TreeSet;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  *
  * @author Benedetta
  */
 public class Rubric implements FileHandler{
-    private Set<Contact> contacts;
+    private ObservableList<Contact> contacts;
 	
     public Rubric() {
-	contacts = new TreeSet<>();
+	contacts = FXCollections.observableArrayList();
     }
 
-    public Set<Contact> getContacts() {
+    public ObservableList<Contact> getContacts() {
         return contacts;
     }
 	
