@@ -22,6 +22,8 @@ public class Number {
      * 
      * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri in ingresso.
      * See also: setNumbers(String[] numbers)
+     * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri di ingresso.
+     * See also: setNumbers(String[] numbers).
      * 
      * @param[in] num1.
      * @param[in] num2.
@@ -64,7 +66,7 @@ public class Number {
      * @brief Metodo che gestisce la set dei numeri di telefono.
      * 
      * @pre Il parametro "numbers" non deve essere null.
-     * @post la variabile "numbers" viene aggiornata con l'array passato come parametro in ingresso.
+     * @post la variabile "numbers" viene aggiornata con l'array passato come parametro di ingresso.
      * 
      * @param[inout] numbers.
      */
