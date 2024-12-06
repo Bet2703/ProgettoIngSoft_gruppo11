@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -21,9 +22,7 @@ import javafx.scene.control.ListView;
 public class ImportViewController implements Initializable {
 
     @FXML
-    private ListView<?> directoryListView;
-    @FXML
-    private Button browseButton;
+    private TextField filenameField;
 
     /**
      * Initializes the controller class.
@@ -33,8 +32,5 @@ public class ImportViewController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void readDirectory(ActionEvent event) {
-    }
     
 }
