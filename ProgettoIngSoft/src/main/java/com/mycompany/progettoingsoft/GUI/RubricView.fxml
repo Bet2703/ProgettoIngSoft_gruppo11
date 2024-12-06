@@ -46,11 +46,6 @@
                      </padding>
                   </TextField>
                   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="50.0" prefWidth="300.0" />
-                  <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeRubric" prefHeight="75.0" prefWidth="150.0" text="Close">
-                     <HBox.margin>
-                        <Insets bottom="4.0" top="4.0" />
-                     </HBox.margin>
-                  </Button>
                   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="20.0" />
                </children>
             </HBox>

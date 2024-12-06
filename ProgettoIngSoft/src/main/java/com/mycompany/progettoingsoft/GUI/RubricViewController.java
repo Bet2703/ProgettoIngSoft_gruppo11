@@ -17,7 +17,9 @@ import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
- *
+ * @file RubricViewController.java
+ * @brief Questo file permette di gestire l'interfaccia grafica della rubrica. 
+ * 
  * @author Benedetta
  */
 public class RubricViewController implements Initializable {
@@ -28,8 +30,6 @@ public class RubricViewController implements Initializable {
     private Button exportButton;
     @FXML
     private TextField searchField;
-    @FXML
-    private Button closeButton;
     @FXML
     private TextField nameField;
     @FXML
@@ -72,41 +72,65 @@ public class RubricViewController implements Initializable {
     private Button removeContactButton;
 
     /**
-     * Initializes the controller class.
+     * @brief Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
+    /**
+     * @brief Metodo che gestisce l'azione relativa al pulsante "Import".
+     * @param event 
+     */
     @FXML
     private void importFile(ActionEvent event) {
     }
-
+    
+    /**
+     * @brief Metodo che gestisce l'azione relativa al pulsante "Export".
+     * @param event 
+     */
     @FXML
     private void exportFile(ActionEvent event) {
     }
-
+    
+    /**
+     * @brief Metodo che gestisce l'azione relativa alla ricerca di un contatto.
+     * @param event 
+     */
     @FXML
     private void searchContact(ActionEvent event) {
     }
-
-    @FXML
-    private void closeRubric(ActionEvent event) {
-    }
-
+    
+    /**
+     * @brief Metodo che gestisce l'azione relativa al checkbox che contrassegna i contatti come preferiti.
+     * @param event 
+     */
     @FXML
     private void contactIsFavourite(ActionEvent event) {
     }
-
+    
+    /**
+     * @brief Metodo che gestisce l'azione relativa al pulsante "AddContact".
+     * @param event 
+     */
     @FXML
     private void addContact(ActionEvent event) {
     }
 
+    /**
+     * @brief Metodo che gestisce l'azione relativa al pulsante "ModifyContact".
+     * @param event 
+     */
     @FXML
     private void modifyContact(ActionEvent event) {
     }
 
+    /**
+     * @brief Metodo che gestisce l'azione relativa al pulsante "RemoveContact".
+     * @param event 
+     */
     @FXML
     private void removeContact(ActionEvent event) {
     }
