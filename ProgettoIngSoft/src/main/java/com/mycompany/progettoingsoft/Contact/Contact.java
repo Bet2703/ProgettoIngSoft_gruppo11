@@ -102,7 +102,7 @@ public class Contact implements Comparable<Contact> {
     /**
     * @brief Metodo che gestisce la get della variabile booleana isFavourite.
     * 
-    * Accede al valore dell' attributo privato favourite.
+    * Accede al valore dell'attributo privato favourite.
     * 
     * @pre il parametro "favourite" è stato inizializzato correttamente.
     * @post viene restituito il valore di "favourite".
@@ -133,16 +133,16 @@ public class Contact implements Comparable<Contact> {
         
     }
     /**
-     * @brief Confronta l'oggetto corrente con un altro oggetto di tipo Contact.
+     * @brief Confronta l'oggetto corrente con l'oggetto di tipo Contact passato in ingresso.
      * 
-     * Viene ordinato secondo l'ordine naturale del cognome
-     * Se due cognomi sono uguali, segue l'ordine naturale del nome
+     * Viene ordinato secondo l'ordine naturale del cognome.
+     * Se due cognomi sono uguali, segue l'ordine naturale del nome.
      * 
-     * @param[in] o
-     * @return  Un valore negativo, zero o positivo se l'oggetto corrente è rispettivamente minore, uguale o maggiore rispetto a o.
+     * @param[in] c
+     * @return Un valore negativo, zero o positivo se l'oggetto corrente è rispettivamente minore, uguale o maggiore rispetto a c.
      */
     @Override
-    public int compareTo(Contact o) {
+    public int compareTo(Contact c) {
         
     }
 
