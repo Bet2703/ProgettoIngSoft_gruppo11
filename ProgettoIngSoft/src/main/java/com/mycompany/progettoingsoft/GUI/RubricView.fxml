@@ -112,8 +112,8 @@
                      <children>
                         <TableView prefHeight="700.0" prefWidth="200.0" VBox.vgrow="NEVER">
                           <columns>
-                            <TableColumn fx:id="nameClm" prefWidth="160.0" text="Name" />
                             <TableColumn fx:id="surnameClm" minWidth="6.0" prefWidth="160.0" text="Surname" />
+                            <TableColumn fx:id="nameClm" prefWidth="160.0" text="Name" />
                               <TableColumn fx:id="number1Clm" minWidth="4.0" prefWidth="110.0" text="Number1" />
                               <TableColumn fx:id="number2Clm" minWidth="0.0" prefWidth="110.0" text="Number2" />
                               <TableColumn fx:id="number3Clm" prefWidth="110.0" text="Number3" />

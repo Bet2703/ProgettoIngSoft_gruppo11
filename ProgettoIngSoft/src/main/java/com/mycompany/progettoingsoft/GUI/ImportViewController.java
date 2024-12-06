@@ -12,29 +12,36 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
- *
+ * @file ImportViewController.java
+ * @brief Questa classe permette di importare un file all'interno del progetto 
+ * attraverso il nome. 
  * @author andre
  */
 public class ImportViewController implements Initializable {
 
     @FXML
-    private ListView<?> directoryListView;
+    private TextField filenameField;
     @FXML
-    private Button browseButton;
+    private Button openFileButton;
 
     /**
-     * Initializes the controller class.
+     *@brief Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    /**
+     * @brief Metodo che gestisce l'import del file.
+     * @param event 
+     */
     @FXML
-    private void readDirectory(ActionEvent event) {
+    private void importFile(ActionEvent event) {
     }
+
     
 }
