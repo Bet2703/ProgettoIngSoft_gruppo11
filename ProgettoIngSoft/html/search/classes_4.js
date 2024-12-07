@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['number_0',['Number',['../classcom_1_1mycompany_1_1progettoingsoft_1_1Contact_1_1Number.html',1,'com::mycompany::progettoingsoft::Contact']]]
+  ['rubric_0',['Rubric',['../classcom_1_1mycompany_1_1progettoingsoft_1_1Rubric_1_1Rubric.html',1,'com::mycompany::progettoingsoft::Rubric']]],
+  ['rubricviewcontroller_1',['RubricViewController',['../classcom_1_1mycompany_1_1progettoingsoft_1_1RubricViewController.html',1,'com::mycompany::progettoingsoft']]]
 ];

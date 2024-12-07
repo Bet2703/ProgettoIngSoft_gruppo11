@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['importviewcontroller_2ejava_0',['ImportViewController.java',['../ImportViewController_8java.html',1,'']]]
+  ['mail_2ejava_0',['Mail.java',['../Mail_8java.html',1,'']]]
 ];
