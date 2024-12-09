@@ -69,7 +69,11 @@ public class Mail {
      * @param[inout] mails.
      */
     public void setMails(String[] mails){
-        
+        if (mails !=null){
+            for (int i=0; i<mails.length; i++){
+                this.mails[i] = mails[i];
+            }
+        }
     }
     
     /**
@@ -81,7 +85,13 @@ public class Mail {
      * @param[in] mail.
      */
     public void addMail(String mail){
-        
+        if (mail != null){
+            for (int i=0; i<mails.length; i++){
+                if(mails[i] == null){
+                    mails[i] = mail;
+                }
+            }
+        }
     }
     
     /**
@@ -95,9 +105,15 @@ public class Mail {
      * @return Array di stringhe contenente le mails.
      */
     public String[] getMails() {
+        return mails;
     }
     
     @Override 
     public String toString(){
+        StringBuffer sb = new StringBuffer ();
+        for (int i=0; i<mails.length; i++){
+            sb.append(mails[i] + ", ");
+        }
+        return sb.toString();
     }
 }
