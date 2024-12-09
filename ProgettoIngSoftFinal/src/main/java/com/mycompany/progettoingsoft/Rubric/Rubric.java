@@ -10,11 +10,18 @@ import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -164,11 +171,18 @@ public class Rubric implements FileHandler {
      * @param[in] filename Il nome del file da importare.
      * @return Ritorna la rubrica contenuta nel file.
      */
-    @Override
-    public Rubric importContacts(String filename) {
-        
+     @Override
+    public Rubric importContacts (String filename)  {
+        try(ObjectInputStream ois= new ObjectInputStream(new FileInputStream(filename))){
+            return (Rubric) ois.readObject();
+        } catch (FileNotFoundException ex) {
+            return null;
+        } catch (IOException ex) {
+            return null;
+        } catch (ClassNotFoundException ex) {
+            return null;
+        }
     } 
-    
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per esportare i contatti.
      * 
@@ -179,11 +193,19 @@ public class Rubric implements FileHandler {
      */
     @Override
     public void exportContacts(String filename) {
-      
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))){
+            oos.writeObject(this.contacts);
+        } catch (IOException ex) {
+            Logger.getLogger(Rubric.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public String toString() {
-        
+        StringBuffer sb = new StringBuffer("Rubric");
+        for(Contact ci : this.contacts){
+            sb.append(ci.toString() + "\n");
+        }
+        return sb.toString();
     }
 }
