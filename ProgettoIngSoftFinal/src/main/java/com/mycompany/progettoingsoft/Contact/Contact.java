@@ -52,6 +52,7 @@ public class Contact implements Comparable<Contact> {
      * @param[in] name.
      */
     public void setName(String name) {
+        this.name = name;
     }
     
     /**
@@ -62,6 +63,7 @@ public class Contact implements Comparable<Contact> {
      * @param[in] surname. 
      */
     public void setSurname(String surname) {
+        this.surname = surname;
     }
     
     /**
@@ -72,6 +74,7 @@ public class Contact implements Comparable<Contact> {
      * @param[in] favourite. 
      */
     public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
     
     /**
@@ -85,6 +88,7 @@ public class Contact implements Comparable<Contact> {
      * @return stringa contenente il nome.
      */
     public String getName() {
+        return this.name;
     }
     
     /**
@@ -98,6 +102,7 @@ public class Contact implements Comparable<Contact> {
      * @return stringa contenente il cognome.
      */
     public String getSurname() {
+        return this.surname;
     }
     /**
     * @brief Metodo che gestisce la get della variabile booleana isFavourite.
@@ -110,6 +115,7 @@ public class Contact implements Comparable<Contact> {
     * @return variabile booleana isFavourite.
     */
     public boolean isFavourite() {
+        return this.favourite;
     }  
     
     /**
@@ -120,7 +126,7 @@ public class Contact implements Comparable<Contact> {
      * @param[in] numbers. 
      */
     public void setNumbers(Number numbers){
-        
+        this.numbers = numbers;
     }
     /**
      * @brief Richiama il metodo setMails della classe Mail.
@@ -130,6 +136,7 @@ public class Contact implements Comparable<Contact> {
      * @param[in] mails. 
      */
     public void setMails (Mail mails){
+        this.mails = mails;
         
     }
     /**
@@ -143,10 +150,15 @@ public class Contact implements Comparable<Contact> {
      */
     @Override
     public int compareTo(Contact c) {
-        
+        if(this.surname.equalsIgnoreCase(c.surname)){
+            return this.name.compareToIgnoreCase(c.name);
+        }else{
+            return this.surname.compareToIgnoreCase(c.surname);
+        }
     }
 
     @Override
     public String toString() {
+        return "Contact: " + "Name: " + this.name + "Surname: " + this.surname + "Numbers: " + this.numbers.toString() + "Mails: " + this.mails.toString() + "Favourite: " + this.favourite;
     }
 }
