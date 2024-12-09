@@ -5,6 +5,8 @@
  */
 package com.mycompany.progettoingsoft.Contact;
 
+import java.io.Serializable;
+
 /**
  * @file Number.java
  * @brief Questo file gestissce i numeri di telefono.
@@ -14,7 +16,7 @@ package com.mycompany.progettoingsoft.Contact;
  * 
  * @author Aniello
  */
-public class Number {
+public class Number implements Serializable {
     private String[] numbers = new String[3];
     
     

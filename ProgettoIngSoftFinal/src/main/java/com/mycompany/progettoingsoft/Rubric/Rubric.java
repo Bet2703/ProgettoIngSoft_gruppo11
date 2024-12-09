@@ -17,6 +17,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -36,7 +37,7 @@ import javafx.collections.ObservableList;
  * 
  * @author Benedetta
  */
-public class Rubric implements FileHandler {
+public class Rubric implements FileHandler, Serializable {
     private ObservableList<Contact> contacts;
     
     /**

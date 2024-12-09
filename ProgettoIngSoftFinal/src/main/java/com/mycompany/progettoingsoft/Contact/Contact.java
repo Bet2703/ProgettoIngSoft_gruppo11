@@ -7,6 +7,7 @@ package com.mycompany.progettoingsoft.Contact;
 
 import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Number;
+import java.io.Serializable;
 
 /**
  * @file Contact.java
@@ -19,7 +20,7 @@ import com.mycompany.progettoingsoft.Contact.Number;
  * 
  * @author andre
  */
-public class Contact implements Comparable<Contact> {
+public class Contact implements Comparable<Contact>,  Serializable{
     private String name;
     private String surname;
     private Number numbers;

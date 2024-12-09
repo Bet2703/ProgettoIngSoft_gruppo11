@@ -5,6 +5,8 @@
  */
 package com.mycompany.progettoingsoft.Contact;
 
+import java.io.Serializable;
+
 /**
  * @file Mail.java
  * @brief Questo file gestisce le mail.
@@ -14,7 +16,7 @@ package com.mycompany.progettoingsoft.Contact;
  * 
  * @author fabianoamendola
  */
-public class Mail {
+public class Mail implements Serializable{
     private String[] mails = new String[3];
     
     /**
