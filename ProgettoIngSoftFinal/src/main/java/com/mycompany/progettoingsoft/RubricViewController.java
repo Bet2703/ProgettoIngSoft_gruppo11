@@ -5,14 +5,18 @@
  */
 package com.mycompany.progettoingsoft;
 
+import com.mycompany.progettoingsoft.Contact.Contact;
+import com.mycompany.progettoingsoft.Rubric.Rubric;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 /**
@@ -49,34 +53,38 @@ public class RubricViewController implements Initializable {
     @FXML
     private CheckBox favouriteCheck;
     @FXML
-    private TableColumn<?, ?> nameClm;
+    private TableColumn<Contact, String> nameClm;
     @FXML
-    private TableColumn<?, ?> surnameClm;
+    private TableColumn<Contact, String> surnameClm;
     @FXML
-    private TableColumn<?, ?> number1Clm;
+    private TableColumn<Contact, String> number1Clm;
     @FXML
-    private TableColumn<?, ?> number2Clm;
+    private TableColumn<Contact, String> number2Clm;
     @FXML
-    private TableColumn<?, ?> number3Clm;
+    private TableColumn<Contact, String> number3Clm;
     @FXML
-    private TableColumn<?, ?> mail1Clm;
+    private TableColumn<Contact, String> mail1Clm;
     @FXML
-    private TableColumn<?, ?> mail2Clm;
+    private TableColumn<Contact, String> mail2Clm;
     @FXML
-    private TableColumn<?, ?> mail3Clm;
+    private TableColumn<Contact, String> mail3Clm;
     @FXML
     private Button addContactButton;
     @FXML
     private Button ModifyContactButton;
     @FXML
     private Button removeContactButton;
-
+    @FXML
+    private TableView<Contact> contactsListTable;
+    
+    private Rubric rubric = new Rubric();
+  
     /**
      * @brief Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODO        
     }    
     
     /**
@@ -117,6 +125,7 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void addContact(ActionEvent event) {
+        
     }
 
     /**

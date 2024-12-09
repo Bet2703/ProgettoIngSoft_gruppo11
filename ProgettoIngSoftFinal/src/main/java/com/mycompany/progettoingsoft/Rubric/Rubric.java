@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -28,7 +30,7 @@ import java.util.Scanner;
  * @author Benedetta
  */
 public class Rubric implements FileHandler {
-    private List<Contact> contacts;
+    private ObservableList<Contact> contacts;
     
     /**
      * @brief Costruttore della classe Rubric. 
@@ -36,7 +38,7 @@ public class Rubric implements FileHandler {
      * Si occupa di inizializzare la collezione. 
      */
     public Rubric() {
-	contacts = new ArrayList();
+	this.contacts = FXCollections.observableArrayList();
     }
     
     /**
@@ -44,7 +46,7 @@ public class Rubric implements FileHandler {
      * 
      * @return Ritorna l'insieme di contatti.
      */
-    public List<Contact> getContacts() {
+    public ObservableList<Contact> getContacts() {
         return contacts;
     }
     

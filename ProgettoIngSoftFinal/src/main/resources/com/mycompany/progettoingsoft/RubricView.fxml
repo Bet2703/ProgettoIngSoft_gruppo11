@@ -110,7 +110,7 @@
                   </VBox>
                   <VBox prefHeight="747.0" prefWidth="1100.0">
                      <children>
-                        <TableView prefHeight="700.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                        <TableView fx:id="contactsListTable" prefHeight="700.0" prefWidth="200.0" VBox.vgrow="NEVER">
                           <columns>
                             <TableColumn fx:id="surnameClm" minWidth="6.0" prefWidth="130.0" text="Surname" />
                             <TableColumn fx:id="nameClm" prefWidth="130.0" text="Name" />
