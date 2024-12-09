@@ -8,8 +8,13 @@ package com.mycompany.progettoingsoft.Rubric;
 import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 
 /**
@@ -22,7 +27,7 @@ import java.util.List;
  * 
  * @author Benedetta
  */
-public class Rubric implements FileHandler{
+public class Rubric implements FileHandler, {
     private List<Contact> contacts;
     
     /**
@@ -54,6 +59,11 @@ public class Rubric implements FileHandler{
      */
     public final boolean addContact(Contact c){
         
+        if(contacts.add(c)){
+            contacts.sort(null);
+            return true;
+        }
+        else return false;
     }
     
     /**
@@ -71,6 +81,28 @@ public class Rubric implements FileHandler{
      * @return Ritorna un valore booleano per confermare o meno la modifica.
      */
     public final boolean modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite){
+        boolean i=false;
+        if(c.getName()!=newName){
+            c.setName(newName);
+            i=true;
+        }
+        if(c.getSurname()!=newSurname){
+            i=true;
+            c.setSurname(newSurname);
+        }
+        if(!c.getNumbers().equals(newNumber)){
+            i=true;
+            c.setNumbers(newNumber);
+        }
+        if(!c.getMail().equals(newMail)){
+            i=true;
+            c.setNumbers(newMail);
+        }
+        if(c.isFavourite()!=newFavourite){
+            i=true;
+            c.setFavourite(newFavourite);
+        }
+        return i;
     }
 	
     /**
@@ -95,7 +127,9 @@ public class Rubric implements FileHandler{
      * 
      * @see modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite)
      */
-    public final boolean contactIsFavourite( Contact c ){
+    public final void contactIsFavourite( Contact c ){
+        c.setFavourite(true);
+        
     }
     
     /**
@@ -108,10 +142,18 @@ public class Rubric implements FileHandler{
      * @return Ritorna un sottoinsieme della rubrica con i contatti contenenti la stringa s.
      */
     public Rubric searchContact( String s ){
-                   
-    }  
+        Rubric search = new Rubric(); // Crea una nuova rubrica per memorizzare i risultati
+        for (Contact c : contacts ) { // Itera su tutti i contatti nella rubrica
+        if (c.getName().toLowerCase().contains(s.toLowerCase())||(c.getSurname().toLowerCase().contains(s.toLowerCase()))) {
+            search.addContact(c); // Aggiunge il contatto che corrisponde alla ricerca
+        }
+    }
+    return search; // Restituisce la rubrica filtrata
+    }           
+      
     
     /**
+     * @throws java.io.IOException
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per importare contatti.
      * 
      * @pre Esiste un file nella directory del progetto.
@@ -121,8 +163,32 @@ public class Rubric implements FileHandler{
      * @return Ritorna la rubrica contenuta nel file.
      */
     @Override
-    public Rubric importContacts(String filename) {
+    public Rubric importContacts(String filename) throws IOException {
+        Rubric a = new Rubric();
         
+        try(Scanner s = new Scanner(new BufferedReader(new FileReader(filename)))){
+            //verifica di lettura di una linea a vuoto. 
+            if(s.nextLine() == null) return a;
+            
+          
+            s.useDelimiter("[;\n]");
+            
+           
+            
+            while(s.hasNext()) {
+                String name = s.next();
+                String surname = s.next();
+                Number number = s.next();
+                Mail mail = s.next();
+                boolean isFavoutite=s.nextBoolean();
+                
+                Contact ct = new Contact(name, surname, number, mail, isFavourite);
+                a.addContact(ct);
+            }
+        }
+        
+        return a;
+    } 
     }
     
     /**
