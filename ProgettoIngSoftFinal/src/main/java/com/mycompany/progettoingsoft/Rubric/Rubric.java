@@ -177,7 +177,7 @@ public class Rubric implements FileHandler {
      */
     @Override
     public void exportContacts(String filename) {
-        
+      
     }
 
     @Override
