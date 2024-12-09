@@ -139,6 +139,14 @@ public class Contact implements Comparable<Contact> {
         this.mails = mails;
         
     }
+
+    public Number getNumbers() {
+        return this.numbers;
+    }
+
+    public Mail getMails() {
+        return this.mails;
+    }
     /**
      * @brief Confronta l'oggetto corrente con l'oggetto di tipo Contact passato in ingresso.
      * 
