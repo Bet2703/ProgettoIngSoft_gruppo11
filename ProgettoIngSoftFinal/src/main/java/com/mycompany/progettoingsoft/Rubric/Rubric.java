@@ -52,7 +52,7 @@ public class Rubric implements FileHandler{
      * @return Ritorna una valore booleano per confermare o meno l'inserimento.
      */
     public final boolean addContact(Contact c){
-        
+          
     }
     
     /**
