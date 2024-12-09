@@ -17,6 +17,7 @@ package com.mycompany.progettoingsoft.Contact;
 public class Number {
     private String[] numbers = new String[3];
     
+    
     /**
      * @brief Costruttore della classe Number.
      * 
