@@ -9,18 +9,13 @@ import com.mycompany.progettoingsoft.Contact.Number;
 import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -92,11 +87,11 @@ public class Rubric implements FileHandler, Serializable {
      */
     public final boolean modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite){
         boolean i=false;
-        if(c.getName()!=newName){
+        if(!c.getName().equals(newName)){
             c.setName(newName);
             i=true;
         }
-        if(c.getSurname()!=newSurname){
+        if(!c.getSurname().equals(newSurname)){
             i=true;
             c.setSurname(newSurname);
         }
@@ -203,7 +198,7 @@ public class Rubric implements FileHandler, Serializable {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("Rubric");
+        StringBuilder sb = new StringBuilder("Rubric");
         for(Contact ci : this.contacts){
             sb.append(ci.toString() + "\n");
         }
