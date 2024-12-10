@@ -169,6 +169,17 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void searchContact(ActionEvent event) {
+    String searchString = searchField.getText().trim();
+
+    if (!searchString.isEmpty()) {
+        Rubric searchResults = rubric.searchContact(searchString);
+        contactsListTable.setItems(searchResults.getContacts());
+        System.out.println("Search results updated for: " + searchString);
+    } else {
+        // Se il campo di ricerca è vuoto, mostra tutti i contatti
+        contactsListTable.setItems(rubric.getContacts());
+        System.out.println("Search field is empty. Showing all contacts.");
+    }
     }
     
     /**
