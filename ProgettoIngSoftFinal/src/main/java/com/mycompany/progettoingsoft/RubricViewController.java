@@ -6,6 +6,8 @@
 package com.mycompany.progettoingsoft;
 
 import com.mycompany.progettoingsoft.Contact.Contact;
+import com.mycompany.progettoingsoft.Contact.Number;
+import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Rubric.Rubric;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -172,8 +174,18 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void addContact(ActionEvent event) {
-        
-    }
+        if(rubric.addContact(new Contact(nameField.getText(), surnameField.getText(), new Number( number1Field.getText(),number2Field.getText(), number3Field.getText()) {}, new Mail( mail1Field.getText(), mail2Field.getText(),mail3Field.getText())))){
+                nameField.clear();
+                surnameField.clear();
+                number1Field.clear();
+                number2Field.clear();
+                number3Field.clear();
+                mail1Field.clear();
+                mail2Field.clear();
+                mail3Field.clear();
+                
+                }
+        }
 
     /**
      * @brief Metodo che gestisce l'azione relativa al pulsante "ModifyContact".
@@ -193,6 +205,10 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void removeContact(ActionEvent event) {
+        Contact selContact=contactsListTable.getSelectionModel().getSelectedItem();
+        if(!(selContact==null)){
+            rubric.removeContact(selContact);
+        }
     }
     
 }
