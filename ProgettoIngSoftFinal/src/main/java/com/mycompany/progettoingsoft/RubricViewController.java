@@ -9,6 +9,7 @@ import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.Rubric.Rubric;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -84,7 +85,17 @@ public class RubricViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO        
+        // TODO    
+        contactsListTable.setItems(rubric.getContacts());
+        
+       surnameClm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getSurname());
+       });
+       
+       nameClm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getName());
+       });
+       
     }    
     
     /**
