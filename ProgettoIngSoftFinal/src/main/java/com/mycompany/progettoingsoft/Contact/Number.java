@@ -21,70 +21,112 @@ public class Number implements Serializable {
     
     
     /**
-     * @brief Costruttore della classe Number.
+     * @brief Costruttore della classe Number con tre numeri di telefono.
      * 
      * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri in ingresso.
-     * See also: setNumbers(String[] numbers)
-     * Inizializza i numeri di telefono con le 3 stringhe che riceve come parametri di ingresso.
-     * See also: setNumbers(String[] numbers).
+     * Ogni numero viene impostato separatamente.
+     * See also: setNumber1(String num1), setNumber2(String num 2), setNumber3(String num3)
      * 
      * @param[in] num1.
      * @param[in] num2.
      * @param[in] num3.
-     * @see setNumbers(String[] numbers)
+     * @see setNumber1(String num1)
+     * @see setNumber2(String num2)
+     * @see setNumber3(String num3)
      */
     public Number (String num1, String num2, String num3){
-        setNumbers(new String[]{num1, num2, num3});        
+        setNumber1( num1);
+        setNumber2( num2 );  
+        setNumber3( num3);
     }
     
     /**
-     * @brief Overload del costruttore.
+     * @brief Costruttore della classe Number con due numeri di telefono.
      * 
      * Inizializza i numeri di telefono con le 2 stringhe che riceve come parametri in ingresso.
-     * See also: setNumbers(String[] numbers)
+     * Ogni numero viene impostato separatamente.
+     * See also: setNumber1(String num1), setNumber2(String num 2)
      * 
      * @param[in] num1.
      * @param[in] num2.
-     * @see setNumbers(String[] numbers)
+     * @see setNumber1(String num1)
+     * @see setNumber2(String num2)
      */
     public Number (String num1, String num2){
-        setNumbers(new String[]{num1, num2});        
+        setNumber1( num1);
+        setNumber2( num2 );        
     }
     
     /**
-     * @brief Overload del costruttore.
+     * @brief Costruttore della classe Number con un numero di telefono.
      * 
-     * Inizializza il numero con la stringa che riceve come parametro in ingresso.
-     * See also: setNumbers(String[] numbers)
+     * Inizializza il numero di telefono con la stringa che riceve com eparametro in ingresso.
+     * Ogni numero viene impostato separatamente.
+     * See also: setNumber1(String num1)
      * 
-     * @param[in] num1. 
-     * @see setNumbers(String[] numbers)
+     * @param[in] num1.
+     * @see setNumber1(String num1)
      */
     public Number (String num1){
-        setNumbers(new String[]{num1});        
+        setNumber1( num1 );        
     }
     public Number(){}
     
     /**
-     * @brief Metodo che gestisce la set dei numeri di telefono.
+     * @brief Metodo che gestisce la set del primo numero di telefono.
      * 
-     * @pre Il parametro "numbers" non deve essere null.
-     * @post la variabile "numbers" viene aggiornata con l'array passato come parametro di ingresso.
+     * Imposta il numero di telefono passato come parametro della funzione al primo elemento dell'array "numbers".
+     * Se il numero è null non viene effettuata nessuna modifica.
      * 
-     * @param[inout] numbers.
+     * @pre Il parametro "num1" non deve essere null.
+     * @post Il primo elemento dell'array "numbers" viene aggiornato con il valore di "num1".
+     * 
+     * @param[in] num1.
      */
-    public void setNumbers(String[] numbers){
-        if( numbers != null ){
-            for( int i=0; i<numbers.length; i++ ){
-                this.numbers [i]= numbers[i];
-            }
+    public void setNumber1(String num1){
+        if( num1 != null ){
+            this.numbers[0] = num1;
+        }
+    }
+    
+    /**
+     * @brief Metodo che gestisce la set del secondo numero di telefono.
+     * 
+     * Imposta il numero di telefono passato come parametro della funzione al secondo elemento dell'array "numbers".
+     * Se il numero è null non viene effettuata nessuna modifica.
+     * 
+     * @pre Il parametro "num2" non deve essere null.
+     * @post Il secondo elemento dell'array "numbers" viene aggiornato con il valore di "num2".
+     * 
+     * @param[in] num2.
+     */
+    public void setNumber2(String num2){
+        if( num2 != null ){
+            this.numbers[1] = num2;
+        }
+    }
+    
+    /**
+     * @brief Metodo che gestisce la set del terzo numero di telefono.
+     * 
+     * Imposta il numero di telefono passato come parametro della funzione al terzo elemento dell'array "numbers".
+     * Se il numero è null non viene effettuata nessuna modifica.
+     * 
+     * @pre Il parametro "num3" non deve essere null.
+     * @post Il terzo elemento dell'array "numbers" viene aggiornato con il valore di "num3".
+     * 
+     * @param[in] num2.
+     */
+    public void setNumber3(String num3){
+        if( num3 != null ){
+            this.numbers[2] = num3;
         }
     }
     
     /**
      * @brief Metodo che aggiunge un numero di telefono all'array contenente i numeri di telefono.
      * 
-     * @pre la variabile "number" non deve essere null.
+     * @pre La variabile "number" non deve essere null.
      * @post La stringa "number" viene aggiunta all' array.
      * 
      * @param[in] number. 
@@ -100,19 +142,47 @@ public class Number implements Serializable {
     }
     
     /**
-     * @brief Metodo che gestisce la get dei numeri di telefono.
+     * @brief Metodo che gestisce la get del primo numero di telefono.
      * 
-     * Accede al valore dell' attributo privato numbers.
+     * Accede al valore del primo elemento dell' attributo privato "numbers".
      * 
-     * @pre il parametro "numbers" è stato inizializzato correttamente.
-     * @post viene restituito il valore di "numbers", l'array di stringhe non viene modificato.
+     * @pre Il parametro "numbers" è stato inizializzato correttamente.
+     * @post Viene restituito il valore del primo elemento dell'array "numbers", l'array di stringhe non viene modificato.
      * 
-     * @return Array di stringhe contenente i numeri di telefono.
+     * @return Il primo numero di telefono.
      */
-    public String[] getNumbers() {
-        return numbers;
+    public String getNumber1() {
+        return numbers[0];
     }
-
+    
+    /**
+     * @brief Metodo che gestisce la get del secondo numero di telefono.
+     * 
+     * Accede al valore del secondo elemento dell' attributo privato "numbers".
+     * 
+     * @pre Il parametro "numbers" è stato inizializzato correttamente.
+     * @post Viene restituito il valore del secondo elemento dell'array "numbers", l'array di stringhe non viene modificato.
+     * 
+     * @return Il secondo numero di telefono.
+     */
+    public String getNumber2() {
+        return numbers[1];
+    }
+    
+    /**
+     * @brief Metodo che gestisce la get del terzo numero di telefono.
+     * 
+     * Accede al valore del terzo elemento dell' attributo privato "numbers".
+     * 
+     * @pre Il parametro "numbers" è stato inizializzato correttamente.
+     * @post Viene restituito il valore del terzo elemento dell'array "numbers", l'array di stringhe non viene modificato.
+     * 
+     * @return Il terzo numero di telefono.
+     */
+    public String getNumber3() {
+        return numbers[2];
+    }
+    
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
