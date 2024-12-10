@@ -88,14 +88,50 @@ public class RubricViewController implements Initializable {
         // TODO    
         contactsListTable.setItems(rubric.getContacts());
         
-       surnameClm.setCellValueFactory(c -> {
+        surnameClm.setCellValueFactory(c -> {
            return new SimpleStringProperty(c.getValue().getSurname());
-       });
+        });
        
-       nameClm.setCellValueFactory(c -> {
-           return new SimpleStringProperty(c.getValue().getName());
-       });
+        nameClm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getName());
+        });
        
+        number1Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber1());
+        });
+       
+        number2Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber2());
+        });
+       
+        number3Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber3());
+        });
+       
+        mail1Clm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getMails().getMail1());
+        });
+       
+        mail2Clm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getMails().getMail2());
+        });
+              
+        mail3Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getMails().getMail3());
+        });
+        
+        contactsListTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                nameField.setText(newValue.getName());
+                surnameField.setText(newValue.getSurname());
+                number1Field.setText(newValue.getNumbers().getNumber1());
+                number2Field.setText(newValue.getName());
+                number3Field.setText(newValue.getName());
+                mail1Field.setText(newValue.getMails().getMail1());
+                mail2Field.setText(newValue.getMails().getMail2());
+                mail3Field.setText(newValue.getMails().getMail3());
+            }
+        });
     }    
     
     /**
@@ -145,6 +181,10 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void modifyContact(ActionEvent event) {
+        Contact selectedContact = contactsListTable.getSelectionModel().getSelectedItem();
+        if(selectedContact != null){
+            rubric.modifyContact(selectedContact, nameField.getText(), surnameField.getText(), new Number(number1Field.getText(), number2Field.getText(), number3Field.getText()),new Mail(mail1Field.getText(), mail2Field.getText(), mail3Field.getText()), favouriteCheck);
+        }
     }
 
     /**
