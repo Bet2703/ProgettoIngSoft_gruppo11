@@ -20,61 +20,105 @@ public class Mail implements Serializable{
     private String[] mails = new String[3];
     
     /**
-     * @brief Costruttore della classe Mail.
+     * @brief Costruttore della classe Mail con tre mail.
      * 
-     * Inizializza le mail con le 3 stringhe che riceve come parametri in input.
-     * See also: setMails (String [] mails)
+     * Inizializza le mail con le 3 stringhe che riceve come parametri in ingresso.
+     * Ogni mail viene impostata separatamente.
+     * See also: setMail1(String mail1), setMail2(String mail2), setMail3(String mail3)
      * 
      * @param[in] mail1.
      * @param[in] mail2.
      * @param[in] mail3.
-     * @see setMails (String [] mails)
+     * @see setMail1(String mail1)
+     * @see setMail2(String mail2)
+     * @see setMail3(String mail3)
      */
-    public Mail(String mail1, String mail2, String mail3){
-        setMails(new String[]{mail1, mail2, mail3});
+    public Mail (String mail1, String mail2, String mail3){
+        setMail1( mail1 );
+        setMail2( mail2 );  
+        setMail3( mail3 );
     }
     
     /**
-     * @brief Overload del costruttore.
+     * @brief Costruttore della classe Mail con due mail.
      * 
-     * Inizializza le mails con le 2 strignhe che riceve come parametri in input.
-     * See also: setMails (String [] mails)
+     * Inizializza le mail con le 2 stringhe che riceve come parametri in ingresso.
+     * Ogni mail viene impostata separatamente.
+     * See also: setMail1(String mail1), setMail2(String mail2)
      * 
      * @param[in] mail1.
-     * @param[in] mail2. 
-     * @see setMails (String [] mails)
+     * @param[in] mail2.
+     * @see setMail1(String mail1)
+     * @see setMail2(String mail2)
      */
-    public Mail(String mail1, String mail2){
-        setMails(new String[]{mail1, mail2});
-    }    
+    public Mail (String mail1, String mail2){
+        setMail1( mail1 );
+        setMail2( mail2 ); 
+    } 
     
     /**
-     * @brief Overload del costruttore.
+     * @brief Costruttore della classe Mail con una mail.
      * 
-     * Inizializza la mail con la stringa che riceve come parametro in input.
-     * See also: setMails (String [] mails)
+     * Inizializza la mail con la stringa che riceve come parametro in ingresso.
+     * Ogni mail viene impostata separatamente.
+     * See also: setMail1(String mail1)
      * 
-     * @param[in] mail1. 
-     * @see setMails (String [] mails)
+     * @param[in] mail1.
+     * @see setMail1(String mail1)
      */
-    public Mail(String mail1){
-        setMails(new String[]{mail1});
-    }
+    public Mail (String mail1){
+        setMail1( mail1 ); 
+    } 
     public Mail (){}
     
     /**
-     * @brief Metodo che gestisce la set delle mail.
+     * @brief Metodo che gestisce la set della prima mail.
      * 
-     * @pre Il parametro "mails" non deve essere null.
-     * @post La variabile "mails" viene aggiornata con l'array passato come parametro in input.
+     * Imposta la mail passata come parametro in ingresso della funzione al primo elemento dell'array "mails".
+     * Se la mail è null non viene effettuata nessuna modifica.
      * 
-     * @param[inout] mails.
+     * @pre Il parametro "mail1" non deve essere null.
+     * @post Il primo elemento dell'array "mails" viene aggiornato con il valore di "mail1".
+     * 
+     * @param[in] mail1.
      */
-    public void setMails(String[] mails){
-        if (mails !=null){
-            for (int i=0; i<mails.length; i++){
-                this.mails[i] = mails[i];
-            }
+    public void setMail1(String mail1){
+        if( mail1 != null ){
+            this.mails[0] = mail1;
+        }
+    }
+    
+    /**
+     * @brief Metodo che gestisce la set della seconda mail.
+     * 
+     * Imposta la mail passata come parametro in ingresso della funzione al secondo elemento dell'array "mails".
+     * Se la mail è null non viene effettuata nessuna modifica.
+     * 
+     * @pre Il parametro "mail2" non deve essere null.
+     * @post Il secondo elemento dell'array "mails" viene aggiornato con il valore di "mail2".
+     * 
+     * @param[in] mail2.
+     */
+    public void setMail2(String mail2){
+        if( mail2 != null ){
+            this.mails[1] = mail2;
+        }
+    }
+    
+    /**
+     * @brief Metodo che gestisce la set della terza mail.
+     * 
+     * Imposta la mail passata come parametro in ingresso della funzione al terzo elemento dell'array "mails".
+     * Se la mail è null non viene effettuata nessuna modifica.
+     * 
+     * @pre Il parametro "mail3" non deve essere null.
+     * @post Il terzo elemento dell'array "mails" viene aggiornato con il valore di "mail3".
+     * 
+     * @param[in] mail3.
+     */
+    public void setMail3(String mail3){
+        if( mail3 != null ){
+            this.mails[3] = mail3;
         }
     }
     
@@ -97,17 +141,45 @@ public class Mail implements Serializable{
     }
     
     /**
-     * @brief Metodo che gestisce la get delle mails.
+     * @brief Metodo che gestisce la get dela prima mail.
      * 
-     * Accede al valore dell'attributo privato mails.
+     * Accede al valore del primo elemento dell' attributo privato "mails".
      * 
-     * @pre il parametro "mails" è stato inizializzato in modo corretto.
-     * @post viene restituito il valore di "mails", l'array di stringhe non viene modificato.
+     * @pre Il parametro "mails" è stato inizializzato correttamente.
+     * @post Viene restituito il valore del primo elemento dell'array "mails", l'array di stringhe non viene modificato.
      * 
-     * @return Array di stringhe contenente le mails.
+     * @return La prima mail.
      */
-    public String[] getMails() {
-        return mails;
+    public String getMail1() {
+        return mails[0];
+    }
+    
+    /**
+     * @brief Metodo che gestisce la get dela seconda mail.
+     * 
+     * Accede al valore del secondo elemento dell' attributo privato "mails".
+     * 
+     * @pre Il parametro "mails" è stato inizializzato correttamente.
+     * @post Viene restituito il valore del secondo elemento dell'array "mails", l'array di stringhe non viene modificato.
+     * 
+     * @return La seconda mail.
+     */
+    public String getMail2() {
+        return mails[1];
+    }
+    
+    /**
+     * @brief Metodo che gestisce la get dela terza mail.
+     * 
+     * Accede al valore del terzo elemento dell' attributo privato "mails".
+     * 
+     * @pre Il parametro "mails" è stato inizializzato correttamente.
+     * @post Viene restituito il valore del terzo elemento dell'array "mails", l'array di stringhe non viene modificato.
+     * 
+     * @return La terza mail.
+     */
+    public String getMail3() {
+        return mails[2];
     }
     
     @Override 
