@@ -70,6 +70,12 @@ public class Number implements Serializable {
     public Number (String num1){
         setNumber1( num1 );        
     }
+    
+    /**
+     * @brief Costruttore vuoto della classe Number
+     * 
+     * Questo costruttore crea un oggetto "Number" senza inizializzare i numeri di telefono.
+     */
     public Number(){}
     
     /**
