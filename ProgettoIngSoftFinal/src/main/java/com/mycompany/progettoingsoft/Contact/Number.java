@@ -147,6 +147,10 @@ public class Number implements Serializable {
         }
     }
     
+    public String getNumbers() {
+        return getNumber1() + " " + getNumber2() + " " + getNumber3();
+    }
+    
     /**
      * @brief Metodo che gestisce la get del primo numero di telefono.
      * 

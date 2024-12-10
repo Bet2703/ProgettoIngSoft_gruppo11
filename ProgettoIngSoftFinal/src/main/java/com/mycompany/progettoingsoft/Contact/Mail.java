@@ -146,6 +146,10 @@ public class Mail implements Serializable{
         }
     }
     
+    public String getMails() {
+        return getMail1() + " " + getMail2() + " " + getMail3();
+    }
+    
     /**
      * @brief Metodo che gestisce la get dela prima mail.
      * 
