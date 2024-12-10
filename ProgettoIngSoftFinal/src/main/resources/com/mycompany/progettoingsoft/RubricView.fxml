@@ -112,14 +112,15 @@
                      <children>
                         <TableView fx:id="contactsListTable" prefHeight="700.0" prefWidth="200.0" VBox.vgrow="NEVER">
                           <columns>
-                            <TableColumn fx:id="surnameClm" minWidth="6.0" prefWidth="130.0" text="Surname" />
-                            <TableColumn fx:id="nameClm" prefWidth="130.0" text="Name" />
-                              <TableColumn fx:id="number1Clm" minWidth="4.0" prefWidth="105.0" text="Number1" />
-                              <TableColumn fx:id="number2Clm" minWidth="0.0" prefWidth="105.0" text="Number2" />
-                              <TableColumn fx:id="number3Clm" prefWidth="105.0" text="Number3" />
-                              <TableColumn fx:id="mail1Clm" prefWidth="140.0" text="Mail1" />
-                              <TableColumn fx:id="mail2Clm" prefWidth="140.0" text="Mail2" />
-                              <TableColumn fx:id="mail3Clm" prefWidth="140.0" text="Mail3" />
+                            <TableColumn fx:id="surnameClm" minWidth="6.0" prefWidth="105.0" text="Surname" />
+                            <TableColumn fx:id="nameClm" prefWidth="105.0" text="Name" />
+                              <TableColumn fx:id="number1Clm" minWidth="4.0" prefWidth="115.0" text="Number1" />
+                              <TableColumn fx:id="number2Clm" minWidth="0.0" prefWidth="115.0" text="Number2" />
+                              <TableColumn fx:id="number3Clm" prefWidth="115.0" text="Number3" />
+                              <TableColumn fx:id="mail1Clm" prefWidth="130.0" text="Mail1" />
+                              <TableColumn fx:id="mail2Clm" prefWidth="130.0" text="Mail2" />
+                              <TableColumn fx:id="mail3Clm" prefWidth="130.0" text="Mail3" />
+                              <TableColumn fx:id="favouriteClm" prefWidth="130.0" text="isFavourite" />
                           </columns>
                            <VBox.margin>
                               <Insets left="1.0" right="1.0" />
