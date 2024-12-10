@@ -124,7 +124,7 @@ public class Mail implements Serializable{
      */
     public void setMail3(String mail3){
         if( mail3 != null ){
-            this.mails[3] = mail3;
+            this.mails[2] = mail3;
         }
     }
     
