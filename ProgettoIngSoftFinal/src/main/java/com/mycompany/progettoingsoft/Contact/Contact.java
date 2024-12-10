@@ -141,12 +141,12 @@ public class Contact implements Comparable<Contact>,  Serializable{
         
     }
 
-    public Number getNumbers() {
-        return this.numbers;
+    public String getNumbers() {
+        return numbers.getNumber1() + " " + numbers.getNumber2() + " " + numbers.getNumber3();
     }
 
-    public Mail getMails() {
-        return this.mails;
+    public String getMails() {
+        return 
     }
     /**
      * @brief Confronta l'oggetto corrente con l'oggetto di tipo Contact passato in ingresso.
