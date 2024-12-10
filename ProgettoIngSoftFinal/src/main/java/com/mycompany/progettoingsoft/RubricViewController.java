@@ -6,6 +6,8 @@
 package com.mycompany.progettoingsoft;
 
 import com.mycompany.progettoingsoft.Contact.Contact;
+import com.mycompany.progettoingsoft.Contact.Number;
+import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Rubric.Rubric;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,14 +90,50 @@ public class RubricViewController implements Initializable {
         // TODO    
         contactsListTable.setItems(rubric.getContacts());
         
-       surnameClm.setCellValueFactory(c -> {
+        surnameClm.setCellValueFactory(c -> {
            return new SimpleStringProperty(c.getValue().getSurname());
-       });
+        });
        
-       nameClm.setCellValueFactory(c -> {
-           return new SimpleStringProperty(c.getValue().getName());
-       });
+        nameClm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getName());
+        });
        
+        number1Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber1());
+        });
+       
+        number2Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber2());
+        });
+       
+        number3Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber3());
+        });
+       
+        mail1Clm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getMails().getMail1());
+        });
+       
+        mail2Clm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getMails().getMail2());
+        });
+              
+        mail3Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getMails().getMail3());
+        });
+        
+        contactsListTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                nameField.setText(newValue.getName());
+                surnameField.setText(newValue.getSurname());
+                number1Field.setText(newValue.getNumbers().getNumber1());
+                number2Field.setText(newValue.getName());
+                number3Field.setText(newValue.getName());
+                mail1Field.setText(newValue.getMails().getMail1());
+                mail2Field.setText(newValue.getMails().getMail2());
+                mail3Field.setText(newValue.getMails().getMail3());
+            }
+        });
     }    
     
     /**
@@ -136,8 +174,18 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void addContact(ActionEvent event) {
-        
-    }
+        if(rubric.addContact(new Contact(nameField.getText(), surnameField.getText(), new Number( number1Field.getText(),number2Field.getText(), number3Field.getText()) {}, new Mail( mail1Field.getText(), mail2Field.getText(),mail3Field.getText())))){
+                nameField.clear();
+                surnameField.clear();
+                number1Field.clear();
+                number2Field.clear();
+                number3Field.clear();
+                mail1Field.clear();
+                mail2Field.clear();
+                mail3Field.clear();
+                
+                }
+        }
 
     /**
      * @brief Metodo che gestisce l'azione relativa al pulsante "ModifyContact".
@@ -145,6 +193,10 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void modifyContact(ActionEvent event) {
+        Contact selectedContact = contactsListTable.getSelectionModel().getSelectedItem();
+        if(selectedContact != null){
+            rubric.modifyContact(selectedContact, nameField.getText(), surnameField.getText(), new Number(number1Field.getText(), number2Field.getText(), number3Field.getText()),new Mail(mail1Field.getText(), mail2Field.getText(), mail3Field.getText()), favouriteCheck);
+        }
     }
 
     /**
@@ -153,6 +205,10 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void removeContact(ActionEvent event) {
+        Contact selContact=contactsListTable.getSelectionModel().getSelectedItem();
+        if(!(selContact==null)){
+            rubric.removeContact(selContact);
+        }
     }
     
 }
