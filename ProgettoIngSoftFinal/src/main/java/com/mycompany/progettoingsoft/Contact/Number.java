@@ -147,6 +147,16 @@ public class Number implements Serializable {
         }
     }
     
+    /**
+     * @brief Restituisce tutti i numeri di telefono associati al contatto.
+     * 
+     * Questo metodo recupera i numeri di telefono al contatto, concatenati in una sola stringa e separati da uno spazio.
+     * 
+     * @pre I numeri devono essere inizializzati correttamente.
+     * @post Viene restituita una stringa contenente i numeri di telefono separati da uno spazion.
+     * 
+     * @return Una stringa contenente i numeri di telefono del contatto, separati da uno spazio.
+     */
     public String getNumbers() {
         return getNumber1() + " " + getNumber2() + " " + getNumber3();
     }

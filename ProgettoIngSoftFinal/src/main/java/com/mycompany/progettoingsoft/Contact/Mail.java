@@ -146,6 +146,16 @@ public class Mail implements Serializable{
         }
     }
     
+    /**
+     * @brief Restituisce tutte le mail associate al contatto.
+     * 
+     * Questo metodo recupera le mail associate al contatto, concatenate in una sola stringa e separate da uno spazio.
+     * 
+     * @pre Le mail devono essere inizializzate correttamente.
+     * @post Viene restituita una stringa contenente le mail separate da uno spazion.
+     * 
+     * @return Una stringa contenente le mail del contatto, separate da uno spazio.
+     */
     public String getMails() {
         return getMail1() + " " + getMail2() + " " + getMail3();
     }
