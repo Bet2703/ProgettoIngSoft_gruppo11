@@ -69,6 +69,12 @@ public class Mail implements Serializable{
     public Mail (String mail1){
         setMail1( mail1 ); 
     } 
+    
+    /**
+     * @brief Costruttore vuoto della classe Mail.
+     * 
+     * Questo costruttore crea un oggetto "Mail" senza inizializzare le mail.
+     */
     public Mail (){}
     
     /**
