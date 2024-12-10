@@ -87,6 +87,7 @@ public class Rubric implements FileHandler, Serializable {
      */
     public final boolean modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite){
         boolean i=false;
+        
         if(!c.getName().equals(newName)){
             c.setName(newName);
             i=true;
