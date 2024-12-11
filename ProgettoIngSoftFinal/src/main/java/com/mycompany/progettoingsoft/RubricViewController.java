@@ -11,6 +11,7 @@ import com.mycompany.progettoingsoft.Contact.Number;
 import com.mycompany.progettoingsoft.Rubric.Rubric;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -130,6 +131,15 @@ public class RubricViewController implements Initializable {
             return new SimpleBooleanProperty(c.getValue().isFavourite()).asObject();
         });
         
+        
+        BooleanBinding cond1= nameField.textProperty().isEmpty();
+        BooleanBinding cond2= surnameField.textProperty().isEmpty();
+        
+        addContactButton.disableProperty().bind(cond1.and(cond2));
+        
+        BooleanBinding condF = contactsListTable.getSelectionModel().selectedItemProperty().isNotNull();
+        favouriteCheck.visibleProperty().bind(condF);
+        
         contactsListTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
                 nameField.setText(newValue.getName());
@@ -153,6 +163,7 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void importFile(ActionEvent event) {
+        
     }
     
     /**
