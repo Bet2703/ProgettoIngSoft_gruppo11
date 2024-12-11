@@ -9,13 +9,16 @@ import com.mycompany.progettoingsoft.Contact.Number;
 import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -32,7 +35,7 @@ import javafx.collections.ObservableList;
  * 
  * @author Benedetta
  */
-public class Rubric implements FileHandler, Serializable {
+public class Rubric implements FileHandler {
     private ObservableList<Contact> contacts;
     
     /**
@@ -170,15 +173,33 @@ public class Rubric implements FileHandler, Serializable {
      */
      @Override
     public Rubric importContacts (String filename)  {
-        try(ObjectInputStream ois= new ObjectInputStream(new FileInputStream(filename))){
-            return (Rubric) ois.readObject();
+        Rubric imported = new Rubric();
+        try(BufferedReader br = new BufferedReader(new FileReader(filename))){
+            br.readLine();
+            String linea;
+            while((linea=br.readLine())!=null){
+                String[] field = linea.split(",");
+                if(field.length == 4){
+                    String name = field[0];
+                    String surname = field[1];
+                    
+                    String[] numberField = field[2].split(",");
+                    Number numbers = new Number(numberField[0], numberField[1], numberField[2]);
+                    
+                    String[] mailField = field[3].split(",");
+                    Mail mails = new Mail(mailField[0], mailField[1], mailField[2]);
+                    
+                    Contact contact = new Contact (name, surname, numbers, mails);
+                    imported.addContact(contact);                  
+                }
+            }
+                
         } catch (FileNotFoundException ex) {
             return null;
         } catch (IOException ex) {
             return null;
-        } catch (ClassNotFoundException ex) {
-            return null;
         }
+        return imported;
     } 
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per esportare i contatti.
@@ -190,8 +211,17 @@ public class Rubric implements FileHandler, Serializable {
      */
     @Override
     public void exportContacts(String filename) {
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))){
-            oos.writeObject(this.contacts);
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
+            bw.write("Nome, Cognome, Numbers, Mails");
+            bw.newLine();
+            
+            for(Contact c : this.contacts){
+                bw.write(c.getName());
+                bw.write(c.getSurname());
+                bw.write(c.getNumbers().toString());
+                bw.write(c.getMails().toString());
+                bw.newLine();
+            }
         } catch (IOException ex) {
             Logger.getLogger(Rubric.class.getName()).log(Level.SEVERE, null, ex);
         }
