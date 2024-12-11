@@ -154,7 +154,7 @@ public class Rubric implements FileHandler {
     public Rubric searchContact( String s ){
         Rubric search = new Rubric(); // Crea una nuova rubrica per memorizzare i risultati
         for (Contact c : contacts ) { // Itera su tutti i contatti nella rubrica
-            if (c.getName().toLowerCase().contains(s.toLowerCase())||(c.getSurname().toLowerCase().contains(s.toLowerCase()))) {
+            if (c.getName().toLowerCase().startsWith(s.toLowerCase())||(c.getSurname().toLowerCase().startsWith(s.toLowerCase()))) {
                 search.addContact(c); // Aggiunge il contatto che corrisponde alla ricerca
             }
         }
