@@ -172,35 +172,44 @@ public class Rubric implements FileHandler {
      * @return Ritorna la rubrica contenuta nel file.
      */
      @Override
-    public Rubric importContacts (String filename)  {
-        Rubric imported = new Rubric(); 
-        try(BufferedReader br = new BufferedReader(new FileReader(filename))){
-            br.readLine();
-            String linea;
-            while((linea=br.readLine())!=null){
-                String[] field = linea.split(",");
-                if(field.length == 4){
-                    String name = field[0];
-                    String surname = field[1];
-                    
-                    String[] numberField = field[2].split(",");
-                    Number numbers = new Number(numberField[0], numberField[1], numberField[2]);
-                    
-                    String[] mailField = field[3].split(",");
-                    Mail mails = new Mail(mailField[0], mailField[1], mailField[2]);
-                    
-                    Contact contact = new Contact (name, surname, numbers, mails);
-                    imported.addContact(contact);                  
-                }
-            }
+    public Rubric importContacts(String filename) {
+        Rubric imported = new Rubric();
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+        String line = br.readLine(); // Legge l'intestazione
+        while ((line = br.readLine()) != null) {
+            String[] fields = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split gestisce i campi con virgolette
+            if (fields.length >= 4) {
+                String name = fields[0].trim();
+                String surname = fields[1].trim();
+                String[] numberFields = fields[2].replace("\"", "").split(",");
+                String[] mailFields = fields[3].replace("\"", "").split(",");
                 
-        } catch (FileNotFoundException ex) {
+                Number numbers = new Number(
+                    numberFields.length > 0 ? numberFields[0].trim() : "",
+                    numberFields.length > 1 ? numberFields[1].trim() : "",
+                    numberFields.length > 2 ? numberFields[2].trim() : ""
+                );
+
+                Mail mails = new Mail(
+                    mailFields.length > 0 ? mailFields[0].trim() : "",
+                    mailFields.length > 1 ? mailFields[1].trim() : "",
+                    mailFields.length > 2 ? mailFields[2].trim() : ""
+                );
+
+                Contact contact = new Contact(name, surname, numbers, mails);
+                imported.addContact(contact);
+            }
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File non trovato: " + filename);
             return null;
-        } catch (IOException ex) {
+        } catch (IOException e) {
+            System.err.println("Errore durante la lettura del file: " + e.getMessage());
             return null;
         }
         return imported;
-    } 
+}
+
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per esportare i contatti.
      * 

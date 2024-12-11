@@ -167,21 +167,16 @@ public class RubricViewController implements Initializable {
     @FXML
     private void importFile(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Import Contacts");
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+          fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File file = fileChooser.showOpenDialog(null);
 
-        if (selectedFile != null) {
-            Rubric importedRubric = rubric.importContacts(selectedFile.getAbsolutePath());
-            if (importedRubric != null) {
-                rubric.getContacts().clear();
-                rubric.getContacts().addAll(importedRubric.getContacts());
-                contactsListTable.refresh();
-                System.out.println("Contacts imported successfully.");
-            } else {
-                System.out.println("Failed to import contacts.");
-            }
-        }
+         if (file != null) {
+        Rubric importedRubric = rubric.importContacts(file.getAbsolutePath());
+        if (importedRubric != null) {
+            rubric.getContacts().addAll(importedRubric.getContacts());
+            contactsListTable.refresh();
+        } 
+    }
     }
     
     /**
