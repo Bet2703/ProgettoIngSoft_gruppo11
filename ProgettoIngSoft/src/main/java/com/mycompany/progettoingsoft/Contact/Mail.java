@@ -14,7 +14,7 @@ package com.mycompany.progettoingsoft.Contact;
  * 
  * @author fabianoamendola
  */
-public class Mail implements {
+public class Mail {
     private String[] mails = new String[3];
     
     /**
