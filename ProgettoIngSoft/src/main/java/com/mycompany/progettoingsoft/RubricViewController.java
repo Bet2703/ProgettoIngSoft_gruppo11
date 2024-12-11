@@ -7,18 +7,26 @@ package com.mycompany.progettoingsoft;
 
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.Contact.Mail;
+import com.mycompany.progettoingsoft.Contact.Number;
 import com.mycompany.progettoingsoft.Rubric.Rubric;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+
 
 /**
  * FXML Controller class
@@ -54,34 +62,103 @@ public class RubricViewController implements Initializable {
     @FXML
     private CheckBox favouriteCheck;
     @FXML
-    private TableColumn<?, ?> nameClm;
+    private TableView<Contact> contactsListTable;
     @FXML
-    private TableColumn<?, ?> surnameClm;
+    private TableColumn<Contact, String> nameClm;
     @FXML
-    private TableColumn<?, ?> number1Clm;
+    private TableColumn<Contact, String> surnameClm;
     @FXML
-    private TableColumn<?, ?> number2Clm;
+    private TableColumn<Contact, String> number1Clm;
     @FXML
-    private TableColumn<?, ?> number3Clm;
+    private TableColumn<Contact, String> number2Clm;
     @FXML
-    private TableColumn<?, ?> mail1Clm;
+    private TableColumn<Contact, String> number3Clm;
     @FXML
-    private TableColumn<?, ?> mail2Clm;
+    private TableColumn<Contact, String> mail1Clm;
     @FXML
-    private TableColumn<?, ?> mail3Clm;
+    private TableColumn<Contact, String> mail2Clm;
+    @FXML
+    private TableColumn<Contact, String> mail3Clm;
+    @FXML
+    private TableColumn<Contact, Boolean> favouriteClm;
     @FXML
     private Button addContactButton;
     @FXML
     private Button ModifyContactButton;
     @FXML
     private Button removeContactButton;
-
+    
+    private Rubric rubric = new Rubric();
+    
     /**
      * @brief Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        contactsListTable.setItems(rubric.getContacts());
+        
+        surnameClm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getSurname());
+        });
+       
+        nameClm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getName());
+        });
+       
+        number1Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber1());
+        });
+       
+        number2Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber2());
+        });
+       
+        number3Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getNumbers().getNumber3());
+        });
+       
+        mail1Clm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getMails().getMail1());
+        });
+       
+        mail2Clm.setCellValueFactory(c -> {
+            return new SimpleStringProperty(c.getValue().getMails().getMail2());
+        });
+              
+        mail3Clm.setCellValueFactory(c -> {
+           return new SimpleStringProperty(c.getValue().getMails().getMail3());
+        });
+        
+        favouriteClm.setCellValueFactory(c -> {
+            return new SimpleBooleanProperty(c.getValue().isFavourite()).asObject();
+        });
+        
+        
+        BooleanBinding cond1= nameField.textProperty().isEmpty();
+        BooleanBinding cond2= surnameField.textProperty().isEmpty();
+        
+        addContactButton.disableProperty().bind(cond1.and(cond2));
+        
+        BooleanBinding condF = contactsListTable.getSelectionModel().selectedItemProperty().isNotNull();
+        favouriteCheck.visibleProperty().bind(condF);
+        
+        contactsListTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                nameField.setText(newValue.getName());
+                surnameField.setText(newValue.getSurname());
+                number1Field.setText(newValue.getNumbers().getNumber1());
+                number2Field.setText(newValue.getNumbers().getNumber2());
+                number3Field.setText(newValue.getNumbers().getNumber3());
+                mail1Field.setText(newValue.getMails().getMail1());
+                mail2Field.setText(newValue.getMails().getMail2());
+                mail3Field.setText(newValue.getMails().getMail3());
+                favouriteCheck.setSelected(newValue.isFavourite());
+            }
+        });
+        
+        contactsListTable.setItems(rubric.getContacts());
+
     }    
     
     /**
@@ -146,6 +223,13 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void contactIsFavourite(ActionEvent event) {
+        Contact selectedContact = contactsListTable.getSelectionModel().getSelectedItem();
+        if(favouriteCheck.isSelected()){
+            rubric.contactIsFavourite(selectedContact);
+            contactsListTable.refresh();
+            
+        }
+        resetField();
     }
     
     /**
@@ -169,6 +253,12 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void modifyContact(ActionEvent event) {
+        Contact selectedContact = contactsListTable.getSelectionModel().getSelectedItem();
+        if(selectedContact != null){
+            rubric.modifyContact(selectedContact, nameField.getText(), surnameField.getText(), new Number(number1Field.getText(), number2Field.getText(), number3Field.getText()),new Mail(mail1Field.getText(), mail2Field.getText(), mail3Field.getText()), favouriteCheck.isSelected());
+            contactsListTable.refresh();
+        }  
+        resetField();
     }
 
      /**
@@ -183,6 +273,21 @@ public class RubricViewController implements Initializable {
             contactsListTable.refresh();
         } 
         resetField();
+    }
+    
+    /**
+    * @brief Metodo che resetta tutti i campi di input nella GUI.
+    */
+    private void resetField() {
+        nameField.clear();
+        surnameField.clear();
+        number1Field.clear();
+        number2Field.clear();
+        number3Field.clear();
+        mail1Field.clear();
+        mail2Field.clear();
+        mail3Field.clear();
+        favouriteCheck.setSelected(false);  // Deseleziona il checkbox "Preferito"
     }
     
 }
