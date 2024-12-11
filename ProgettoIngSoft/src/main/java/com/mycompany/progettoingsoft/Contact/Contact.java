@@ -188,6 +188,6 @@ public class Contact implements Comparable<Contact>{
 
     @Override
     public String toString() {
-        return "Contact: " + "Name: " + this.name + "Surname: " + this.surname + "Numbers: " + this.numbers.toString() + "Mails: " + this.mails.toString() + "Favourite: " + this.favourite;
+        return "Contact: " + " Name: " + this.name + " Surname: " + this.surname + " Numbers: " + this.numbers.toString() + " Mails: " + this.mails.toString() + " Favourite: " + this.favourite;
     }
 }
