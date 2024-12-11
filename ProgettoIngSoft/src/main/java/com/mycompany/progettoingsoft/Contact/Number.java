@@ -128,24 +128,6 @@ public class Number {
     }
     
     /**
-     * @brief Metodo che aggiunge un numero di telefono all'array contenente i numeri di telefono.
-     * 
-     * @pre La variabile "number" non deve essere null.
-     * @post La stringa "number" viene aggiunta all' array.
-     * 
-     * @param[in] number. 
-     */
-    public void addNumber(String number){
-        if( number != null ){
-            for( int i=0; i<numbers.length; i++){
-                if( numbers[i] == null ){
-                    numbers[i] = number;
-                }
-            }
-        }
-    }
-    
-    /**
      * @brief Restituisce tutti i numeri di telefono associati al contatto.
      * 
      * Questo metodo recupera i numeri di telefono al contatto, concatenati in una sola stringa e separati da uno spazio.
