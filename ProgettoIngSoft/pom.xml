@@ -97,7 +97,7 @@
             </dependencies>
         </profile>
     </profiles>
-    <name>ProgettoIngSoftFinal</name>
+    <name>ProgettoIngSoftDefinitivo</name>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
