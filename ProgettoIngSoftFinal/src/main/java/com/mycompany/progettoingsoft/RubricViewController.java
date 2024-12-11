@@ -191,6 +191,7 @@ public class RubricViewController implements Initializable {
     @FXML
     private void exportFile(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
+        
     
          fileChooser.setTitle("Export Contacts");
         fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
