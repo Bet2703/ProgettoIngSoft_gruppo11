@@ -5,10 +5,24 @@
  */
 package com.mycompany.progettoingsoft.Rubric;
 
+import com.mycompany.progettoingsoft.Contact.Number;
+import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -21,8 +35,8 @@ import java.util.List;
  * 
  * @author Benedetta
  */
-public class Rubric implements FileHandler{
-    private List<Contact> contacts;
+public class Rubric implements FileHandler {
+    private ObservableList<Contact> contacts;
     
     /**
      * @brief Costruttore della classe Rubric. 
@@ -30,7 +44,7 @@ public class Rubric implements FileHandler{
      * Si occupa di inizializzare la collezione. 
      */
     public Rubric() {
-	contacts = new ArrayList();
+	this.contacts = FXCollections.observableArrayList();
     }
     
     /**
@@ -38,7 +52,7 @@ public class Rubric implements FileHandler{
      * 
      * @return Ritorna l'insieme di contatti.
      */
-    public List<Contact> getContacts() {
+    public ObservableList<Contact> getContacts() {
         return contacts;
     }
     
@@ -53,6 +67,11 @@ public class Rubric implements FileHandler{
      */
     public final boolean addContact(Contact c){
         
+        if(contacts.add(c)){
+            contacts.sort(null);
+            return true;
+        }
+        else return false;
     }
     
     /**
@@ -70,6 +89,29 @@ public class Rubric implements FileHandler{
      * @return Ritorna un valore booleano per confermare o meno la modifica.
      */
     public final boolean modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite){
+        boolean i=false;
+        
+        if(!c.getName().equals(newName)){
+            c.setName(newName);
+            i=true;
+        }
+        if(!c.getSurname().equals(newSurname)){
+            i=true;
+            c.setSurname(newSurname);
+        }
+        if(!c.getNumbers().equals(newNumber)){
+            i=true;
+            c.setNumbers(newNumber);
+        }
+        if(!c.getMails().equals(newMail)){
+            i=true;
+            c.setMails(newMail);
+        }
+        if(c.isFavourite()!=newFavourite){
+            i=true;
+            c.setFavourite(newFavourite);
+        }
+        return i;
     }
 	
     /**
@@ -81,6 +123,7 @@ public class Rubric implements FileHandler{
      * @return Ritorna un valore booleano per confermare o meno la rimozione. 
      */
     public boolean removeContact( Contact c ){
+        return this.contacts.remove(c);
     }
     
     /**
@@ -94,7 +137,9 @@ public class Rubric implements FileHandler{
      * 
      * @see modifyContact(Contact c, String newName, String newSurname, Number newNumber, Mail newMail, boolean newFavourite)
      */
-    public final boolean contactIsFavourite( Contact c ){
+    public final void contactIsFavourite( Contact c ){
+        c.setFavourite(true);
+        
     }
     
     /**
@@ -107,8 +152,15 @@ public class Rubric implements FileHandler{
      * @return Ritorna un sottoinsieme della rubrica con i contatti contenenti la stringa s.
      */
     public Rubric searchContact( String s ){
-                   
-    }  
+        Rubric search = new Rubric(); // Crea una nuova rubrica per memorizzare i risultati
+        for (Contact c : contacts ) { // Itera su tutti i contatti nella rubrica
+            if (c.getName().toLowerCase().contains(s.toLowerCase())||(c.getSurname().toLowerCase().contains(s.toLowerCase()))) {
+                search.addContact(c); // Aggiunge il contatto che corrisponde alla ricerca
+            }
+        }
+    return search; // Restituisce la rubrica filtrata
+    }           
+      
     
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per importare contatti.
@@ -119,11 +171,45 @@ public class Rubric implements FileHandler{
      * @param[in] filename Il nome del file da importare.
      * @return Ritorna la rubrica contenuta nel file.
      */
-    @Override
+     @Override
     public Rubric importContacts(String filename) {
-        
-    }
-    
+        Rubric imported = new Rubric();
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+        String line = br.readLine(); // Legge l'intestazione
+        while ((line = br.readLine()) != null) {
+            String[] fields = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split gestisce i campi con virgolette
+            if (fields.length >= 4) {
+                String name = fields[0].trim();
+                String surname = fields[1].trim();
+                String[] numberFields = fields[2].replace("\"", "").split(",");
+                String[] mailFields = fields[3].replace("\"", "").split(",");
+                
+                Number numbers = new Number(
+                    numberFields.length > 0 ? numberFields[0].trim() : "",
+                    numberFields.length > 1 ? numberFields[1].trim() : "",
+                    numberFields.length > 2 ? numberFields[2].trim() : ""
+                );
+
+                Mail mails = new Mail(
+                    mailFields.length > 0 ? mailFields[0].trim() : "",
+                    mailFields.length > 1 ? mailFields[1].trim() : "",
+                    mailFields.length > 2 ? mailFields[2].trim() : ""
+                );
+
+                Contact contact = new Contact(name, surname, numbers, mails);
+                imported.addContact(contact);
+            }
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println("File non trovato: " + filename);
+            return null;
+        } catch (IOException e) {
+            System.err.println("Errore durante la lettura del file: " + e.getMessage());
+            return null;
+        }
+        return imported;
+}
+
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per esportare i contatti.
      * 
@@ -134,11 +220,28 @@ public class Rubric implements FileHandler{
      */
     @Override
     public void exportContacts(String filename) {
-        
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
+            bw.write("Nome, Cognome, Numbers, Mails");
+            bw.newLine();
+            
+            for(Contact c : this.contacts){
+                bw.write(c.getName());
+                bw.write(c.getSurname());
+                bw.write(c.getNumbers().toString());
+                bw.write(c.getMails().toString());
+                bw.newLine();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Rubric.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public String toString() {
-        
+        StringBuilder sb = new StringBuilder("Rubric");
+        for(Contact ci : this.contacts){
+            sb.append(ci.toString() + "\n");
+        }
+        return sb.toString();
     }
 }
