@@ -177,23 +177,23 @@ public class Rubric implements FileHandler {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
         String line = br.readLine(); // Legge l'intestazione
         while ((line = br.readLine()) != null) {
-            String[] fields = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // Split gestisce i campi con virgolette
+            String[] fields = line.split("[;]"); // Split gestisce i campi con virgolette
             if (fields.length >= 4) {
-                String name = fields[0].trim();
-                String surname = fields[1].trim();
-                String[] numberFields = fields[2].replace("\"", "").split(",");
-                String[] mailFields = fields[3].replace("\"", "").split(",");
+                String name = fields[0];
+                String surname = fields[1];
+                String[] numberFields = fields[2].split("[,]");
+                String[] mailFields = fields[3].split("[,]");
                 
                 Number numbers = new Number(
-                    numberFields.length > 0 ? numberFields[0].trim() : "",
-                    numberFields.length > 1 ? numberFields[1].trim() : "",
-                    numberFields.length > 2 ? numberFields[2].trim() : ""
+                    numberFields.length > 0 ? numberFields[0] : "",
+                    numberFields.length > 1 ? numberFields[1] : "",
+                    numberFields.length > 2 ? numberFields[2] : ""
                 );
 
                 Mail mails = new Mail(
-                    mailFields.length > 0 ? mailFields[0].trim() : "",
-                    mailFields.length > 1 ? mailFields[1].trim() : "",
-                    mailFields.length > 2 ? mailFields[2].trim() : ""
+                    mailFields.length > 0 ? mailFields[0] : "",
+                    mailFields.length > 1 ? mailFields[1] : "",
+                    mailFields.length > 2 ? mailFields[2] : ""
                 );
 
                 Contact contact = new Contact(name, surname, numbers, mails);
@@ -221,13 +221,16 @@ public class Rubric implements FileHandler {
     @Override
     public void exportContacts(String filename) {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename))){
-            bw.write("Nome, Cognome, Numbers, Mails");
+            bw.write("NAME; SURNAME; NUMBERS; MAILS");
             bw.newLine();
             
             for(Contact c : this.contacts){
                 bw.write(c.getName());
+                bw.append(";");
                 bw.write(c.getSurname());
+                bw.append(";");
                 bw.write(c.getNumbers().toString());
+                bw.append(";");
                 bw.write(c.getMails().toString());
                 bw.newLine();
             }
