@@ -126,23 +126,7 @@ public class Mail {
         }
     }
     
-    /**
-     * @brief Metodo che aggiunge una mail all'array contenente le mails.
-     * 
-     * @pre La variabile "mails" non deve essere null.
-     * @post La stringa "mails" viene aggiunta all'array.
-     *
-     * @param[in] mail.
-     */
-    public void addMail(String mail){
-        if (mail != null){
-            for (int i=0; i<mails.length; i++){
-                if(mails[i] == null){
-                    mails[i] = mail;
-                }
-            }
-        }
-    }
+
     
     /**
      * @brief Restituisce tutte le mail associate al contatto.
