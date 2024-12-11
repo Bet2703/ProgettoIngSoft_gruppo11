@@ -71,7 +71,11 @@ public class Number {
      * @param[inout] numbers.
      */
     public void setNumbers(String[] numbers){
-        
+        if( numbers != null ){
+            for( int i=0; i<numbers.length; i++ ){
+                this.numbers[i] = numbers[i];
+            }
+        }
     }
     
     /**
@@ -83,7 +87,13 @@ public class Number {
      * @param[in] number. 
      */
     public void addNumber(String number){
-        
+        if( number != null ){
+            for( int i=0; i<numbers.length; i++ ){
+                if( numbers[i] == null ){
+                    numbers[i] = number;
+                }
+            }
+        }
     }
     
     /**
@@ -97,11 +107,15 @@ public class Number {
      * @return Array di stringhe contenente i numeri di telefono.
      */
     public String[] getNumbers() {
-        
+        return numbers;
     }
 
     @Override
     public String toString() {
-        
+        StringBuffer sb = new StringBuffer();
+        for( String n : numbers){
+            sb.append( n + ", " );
+        }
+        return sb.toString();
     }
 }
