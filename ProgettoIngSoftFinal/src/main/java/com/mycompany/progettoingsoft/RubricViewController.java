@@ -182,7 +182,7 @@ public class RubricViewController implements Initializable {
     private void searchContact(ActionEvent event) {
     String searchString = searchField.getText().trim();
 
-    if (!searchString.isEmpty()) {
+    if (!searchString.isEmpty()) { 
         Rubric searchResults = rubric.searchContact(searchString);
         contactsListTable.setItems(searchResults.getContacts());
         System.out.println("Search results updated for: " + searchString);

@@ -173,7 +173,7 @@ public class Rubric implements FileHandler {
      */
      @Override
     public Rubric importContacts (String filename)  {
-        Rubric imported = new Rubric();
+        Rubric imported = new Rubric(); 
         try(BufferedReader br = new BufferedReader(new FileReader(filename))){
             br.readLine();
             String linea;
