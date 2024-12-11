@@ -139,11 +139,32 @@ public class Contact implements Comparable<Contact>{
         this.mails = mails;
         
     }
-
+    
+    /**
+     * @brief Metodo che gestisce la get dell'oggetto Number.
+     * 
+     * Accede al valore dell'attributo privato numbers.
+     * 
+     * @pre il parametro "numbers" è stato inizializzato correttamente.
+     * @post viene restituito il valore di "numbers".
+     * 
+     * @return stringa contenente i numeri.
+     */
     public Number getNumbers(){
         return numbers;
     }
-
+    
+    
+    /**
+     * @brief Metodo che gestisce la get dell'oggetto Mail.
+     * 
+     * Accede al valore dell'attributo privato mails.
+     * 
+     * @pre il parametro "mails" è stato inizializzato correttamente.
+     * @post viene restituito il valore di "mails".
+     * 
+     * @return stringa contenente le mail.
+     */
     public Mail getMails() {
         return mails;
     }
