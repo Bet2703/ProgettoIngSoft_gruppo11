@@ -9,6 +9,7 @@ import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Number;
 import com.mycompany.progettoingsoft.Rubric.Rubric;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.binding.BooleanBinding;
@@ -23,6 +24,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 /**
  * FXML Controller class
@@ -163,7 +166,22 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void importFile(ActionEvent event) {
-        
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import Contacts");
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            Rubric importedRubric = rubric.importContacts(selectedFile.getAbsolutePath());
+            if (importedRubric != null) {
+                rubric.getContacts().clear();
+                rubric.getContacts().addAll(importedRubric.getContacts());
+                contactsListTable.refresh();
+                System.out.println("Contacts imported successfully.");
+            } else {
+                System.out.println("Failed to import contacts.");
+            }
+        }
     }
     
     /**
@@ -172,8 +190,17 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void exportFile(ActionEvent event) {
-    }
+        FileChooser fileChooser = new FileChooser();
     
+         fileChooser.setTitle("Export Contacts");
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("CSV Files", "*.csv"));
+        File selectedFile = fileChooser.showSaveDialog(null);
+
+        if (selectedFile != null) {
+            rubric.exportContacts(selectedFile.getAbsolutePath());
+            System.out.println("Contacts exported successfully.");
+    }
+    }
     /**
      * @brief Metodo che gestisce l'azione relativa alla ricerca di un contatto.
      * @param event 
