@@ -119,9 +119,7 @@ public class Contact implements Comparable<Contact>{
     }  
     
     /**
-     * @brief Richiama il metodo setNumbers della classe Number.
-     * 
-     * @see setNumbers(String[] numbers)
+     * @brief Metodo che gestisce la set dei "numbers".
      * 
      * @param[in] numbers. 
      */
@@ -129,9 +127,7 @@ public class Contact implements Comparable<Contact>{
         this.numbers = numbers;
     }
     /**
-     * @brief Richiama il metodo setMails della classe Mail.
-     * 
-     * @see setMails(String[] mails)
+     * @brief Metodo che gestisce la set delle "mails".
      * 
      * @param[in] mails. 
      */

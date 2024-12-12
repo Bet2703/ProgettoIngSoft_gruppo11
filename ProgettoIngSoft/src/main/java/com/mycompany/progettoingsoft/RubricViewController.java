@@ -238,11 +238,13 @@ public class RubricViewController implements Initializable {
      */
     @FXML
     private void addContact(ActionEvent event) {
-        Contact newContact = new Contact(nameField.getText(), surnameField.getText(), new com.mycompany.progettoingsoft.Contact.Number(number1Field.getText(), number2Field.getText(), number3Field.getText()), new Mail(mail1Field.getText(), mail2Field.getText(), mail3Field.getText()));
+        Contact newContact = new Contact(nameField.getText(), surnameField.getText(), new Number(number1Field.getText(), number2Field.getText(), number3Field.getText()), new Mail(mail1Field.getText(), mail2Field.getText(), mail3Field.getText()));
         
         if(rubric.addContact(newContact)){
             contactsListTable.refresh();
             resetField();
+        }else{
+            System.out.println("Contact not added.");
         }
         
     }
