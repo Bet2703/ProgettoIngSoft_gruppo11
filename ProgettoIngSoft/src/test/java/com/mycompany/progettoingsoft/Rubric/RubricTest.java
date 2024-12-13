@@ -164,6 +164,8 @@ public class RubricTest {
     public void testToString() {
         System.out.println("toString");
         this.setUp();
+        Contact contact3 = new Contact("Fabiano", "Amendola", new Number("123456789"), new Mail("fabiano.amendola@mail.com"));
+        rubric.addContact(contact3);
         String result = rubric.toString();
         assertTrue(result.contains("Fabiano")); // La rappresentazione in stringa dovrebbe includere il nome del contatto.
         assertTrue(result.contains("Amendola")); // La rappresentazione in stringa dovrebbe includere il cognome del contatto.
