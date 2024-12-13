@@ -20,7 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
 public class RubricTest {
     private Number numbers;
     private Mail mails;
-    private Contact contact1;
+    private Contact contact;
     private Contact contact2;
     private Rubric rubric;
     
@@ -32,7 +32,7 @@ public class RubricTest {
     public void setUp() {
         numbers = new Number("1357924680", "2468013579");
         mails = new Mail("aniello.dilieto@mail.com", "benedetta.delmauro@mail.com");
-        contact1 = new Contact("Aniello", "Di Lieto", numbers, mails);
+        contact = new Contact("Aniello", "Di Lieto", numbers, mails);
         rubric=new Rubric();
     }
 
@@ -56,14 +56,12 @@ public class RubricTest {
     @Test
     public void testAddContact() {
         System.out.println("addContact");
-        Contact c = null;
-        Rubric instance = new Rubric();
-        boolean expResult = false;
-        boolean result = instance.addContact(c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+        boolean added = rubric.addContact(contact);
+        assertTrue(added); // Il contatto dovrebbe essere aggiunto con successo.
+        assertEquals(1, rubric.getContacts().size()); // La lista dei contatti dovrebbe contenere un contatto.
     }
+
 
     /**
      * Test of modifyContact method, of class Rubric.
@@ -71,18 +69,17 @@ public class RubricTest {
     @Test
     public void testModifyContact() {
         System.out.println("modifyContact");
-        Contact c = null;
-        String newName = "";
-        String newSurname = "";
-        Number newNumber = null;
-        Mail newMail = null;
-        boolean newFavourite = false;
-        Rubric instance = new Rubric();
-        boolean expResult = false;
-        boolean result = instance.modifyContact(c, newName, newSurname, newNumber, newMail, newFavourite);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+        rubric.addContact(contact);
+
+        boolean modified = rubric.modifyContact(contact, "Nello", "Del Mauro", new Number("987654321"), new Mail("nello.delmauro@mail.com"), true);
+
+        assertTrue(modified); // Il contatto dovrebbe essere modificato con successo.
+        assertEquals("Nello", contact.getName()); // Il nome dovrebbe essere aggiornato.
+        assertEquals("Del Mauro", contact.getSurname()); // Il cognome dovrebbe essere aggiornato.
+        assertEquals("987654321", contact.getNumbers()); // Il numero dovrebbe essere aggiornato.
+        assertEquals("nello.delmauro@mail.com", contact.getMails()); // L'email dovrebbe essere aggiornata.
+        assertTrue(contact.isFavourite()); // Lo stato di preferito dovrebbe essere aggiornato.
     }
 
     /**
@@ -91,14 +88,15 @@ public class RubricTest {
     @Test
     public void testRemoveContact() {
         System.out.println("removeContact");
-        Contact c = null;
-        Rubric instance = new Rubric();
-        boolean expResult = false;
-        boolean result = instance.removeContact(c);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+         rubric.addContact(contact);
+
+        boolean removed = rubric.removeContact(contact);
+        assertTrue(removed); // Il contatto è stato rimosso con successo.
+        assertTrue(rubric.getContacts().isEmpty()); // La lista dei contatti dovrebbe essere vuota dopo la rimozione.
     }
+
+    
 
     /**
      * Test of contactIsFavourite method, of class Rubric.
