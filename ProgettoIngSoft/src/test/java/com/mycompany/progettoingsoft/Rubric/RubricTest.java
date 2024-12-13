@@ -8,6 +8,7 @@ package com.mycompany.progettoingsoft.Rubric;
 import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.Contact.Mail;
 import com.mycompany.progettoingsoft.Contact.Number;
+import java.io.File;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +34,7 @@ public class RubricTest {
         numbers = new Number("1357924680", "2468013579");
         mails = new Mail("aniello.dilieto@mail.com", "benedetta.delmauro@mail.com");
         contact = new Contact("Aniello", "Di Lieto", numbers, mails);
-        contact2 = new Contact("Andrea", "Di Muro", numbers, mails);        
+        contact2 = new Contact("Andrea", "Del Mauro", numbers, mails);        
         rubric=new Rubric();
     }
 
@@ -120,6 +121,7 @@ public class RubricTest {
     @Test
     public void testSearchContact() {
         System.out.println("searchContact");
+        this.setUp();
         Rubric rubrics = new Rubric();
         Contact contact1 = new Contact("Andrea", "Del Mauro", new Number("123456789"), new Mail("andrea.delmauro@mail.com"));
         Contact contact3 = new Contact("Benedetta", "Amendola", new Number("987654321"), new Mail("benedetta.amendola@mail.com"));
@@ -140,11 +142,24 @@ public class RubricTest {
     public void testImportContacts() {
         System.out.println("importContacts");
         this.setUp();
-        String testFileName = "contatti_test.csv";
-        // Si assume che esista un file valido con dati appropriati
+        String testFileName = "ImportContactsTest.csv";
+        
+        Contact c = new Contact("Andrea", "Del Mauro", new Number(), new Mail());
+        //creo una rubrica da esportare
+        rubric.addContact(c);//aggiungo un contatto
+        rubric.exportContacts(testFileName); //esporto la rubrica
+        
+        //importo la rubrica appena esportata
         Rubric imported = rubric.importContacts(testFileName);
-        assertNotNull(imported); // La rubrica importata non dovrebbe essere null.
-        assertFalse(imported.getContacts().isEmpty()); // La rubrica importata dovrebbe contenere contatti.
+        
+        assertNotNull(imported); //la rubrica non dovrebbe essere null
+        assertFalse(imported.getContacts().isEmpty());
+        System.out.println("cacca");
+        
+        File file = new File(testFileName);
+        if(file.exists()){
+            assertTrue(file.delete()); //elimino il file dalla cartella
+        }
     }
 
     /**
@@ -158,6 +173,11 @@ public class RubricTest {
 
         String testFileName = "esporta_contatti_test.csv";
         rubric.exportContacts(testFileName);
+        
+        File file = new File(testFileName);
+        if(file.exists()){
+            assertTrue(file.delete()); //elimino il file dalla cartella
+        }
     }
 
     /**
