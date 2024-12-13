@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['filehandler_0',['FileHandler',['../interfacecom_1_1mycompany_1_1progettoingsoft_1_1IO_1_1FileHandler.html',1,'com::mycompany::progettoingsoft::IO']]]
+  ['contact_0',['Contact',['../classcom_1_1mycompany_1_1progettoingsoft_1_1Contact_1_1Contact.html',1,'com::mycompany::progettoingsoft::Contact']]]
 ];

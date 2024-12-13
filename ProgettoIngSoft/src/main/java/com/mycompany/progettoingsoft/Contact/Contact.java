@@ -119,9 +119,7 @@ public class Contact implements Comparable<Contact>{
     }  
     
     /**
-     * @brief Richiama il metodo setNumbers della classe Number.
-     * 
-     * @see setNumbers(String[] numbers)
+     * @brief Metodo che gestisce la set dei "numbers".
      * 
      * @param[in] numbers. 
      */
@@ -129,9 +127,7 @@ public class Contact implements Comparable<Contact>{
         this.numbers = numbers;
     }
     /**
-     * @brief Richiama il metodo setMails della classe Mail.
-     * 
-     * @see setMails(String[] mails)
+     * @brief Metodo che gestisce la set delle "mails".
      * 
      * @param[in] mails. 
      */
@@ -139,11 +135,32 @@ public class Contact implements Comparable<Contact>{
         this.mails = mails;
         
     }
-
+    
+    /**
+     * @brief Metodo che gestisce la get dell'oggetto Number.
+     * 
+     * Accede al valore dell'attributo privato numbers.
+     * 
+     * @pre il parametro "numbers" è stato inizializzato correttamente.
+     * @post viene restituito il valore di "numbers".
+     * 
+     * @return stringa contenente i numeri.
+     */
     public Number getNumbers(){
         return numbers;
     }
-
+    
+    
+    /**
+     * @brief Metodo che gestisce la get dell'oggetto Mail.
+     * 
+     * Accede al valore dell'attributo privato mails.
+     * 
+     * @pre il parametro "mails" è stato inizializzato correttamente.
+     * @post viene restituito il valore di "mails".
+     * 
+     * @return stringa contenente le mail.
+     */
     public Mail getMails() {
         return mails;
     }
@@ -167,6 +184,6 @@ public class Contact implements Comparable<Contact>{
 
     @Override
     public String toString() {
-        return "Contact: " + "Name: " + this.name + "Surname: " + this.surname + "Numbers: " + this.numbers.toString() + "Mails: " + this.mails.toString() + "Favourite: " + this.favourite;
+        return "Contact: " + " Name: " + this.name + " Surname: " + this.surname + " Numbers: " + this.numbers.toString() + " Mails: " + this.mails.toString() + " Favourite: " + this.favourite;
     }
 }

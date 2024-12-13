@@ -11,14 +11,10 @@ import com.mycompany.progettoingsoft.Contact.Contact;
 import com.mycompany.progettoingsoft.IO.FileHandler;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -154,7 +150,7 @@ public class Rubric implements FileHandler {
     public Rubric searchContact( String s ){
         Rubric search = new Rubric(); // Crea una nuova rubrica per memorizzare i risultati
         for (Contact c : contacts ) { // Itera su tutti i contatti nella rubrica
-            if (c.getName().toLowerCase().contains(s.toLowerCase())||(c.getSurname().toLowerCase().contains(s.toLowerCase()))) {
+            if (c.getName().toLowerCase().startsWith(s.toLowerCase())||(c.getSurname().toLowerCase().startsWith(s.toLowerCase()))) {
                 search.addContact(c); // Aggiunge il contatto che corrisponde alla ricerca
             }
         }
