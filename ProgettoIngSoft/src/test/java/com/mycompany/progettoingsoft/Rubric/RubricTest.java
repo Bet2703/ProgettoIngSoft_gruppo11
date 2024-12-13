@@ -33,6 +33,7 @@ public class RubricTest {
         numbers = new Number("1357924680", "2468013579");
         mails = new Mail("aniello.dilieto@mail.com", "benedetta.delmauro@mail.com");
         contact = new Contact("Aniello", "Di Lieto", numbers, mails);
+        contact2 = new Contact("Andrea", "Di Muro", numbers, mails);        
         rubric=new Rubric();
     }
 
@@ -104,11 +105,12 @@ public class RubricTest {
     @Test
     public void testContactIsFavourite() {
         System.out.println("contactIsFavourite");
-        Contact c = null;
-        Rubric instance = new Rubric();
-        instance.contactIsFavourite(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+         rubric.addContact(contact);
+
+        rubric.contactIsFavourite(contact);
+        assertTrue(contact.isFavourite()); // Il contatto dovrebbe essere marcato come preferito.
+
     }
 
     /**
@@ -117,14 +119,16 @@ public class RubricTest {
     @Test
     public void testSearchContact() {
         System.out.println("searchContact");
-        String s = "";
-        Rubric instance = new Rubric();
-        Rubric expResult = null;
-        Rubric result = instance.searchContact(s);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+          rubric.addContact(contact);
+        rubric.addContact(contact2);
+
+        Rubric result = rubric.searchContact("Andrea");
+        assertEquals(1, result.getContacts().size()); // La ricerca dovrebbe restituire un contatto.
+        assertEquals(contact, result.getContacts().get(0)); // Il contatto restituito dovrebbe corrispondere alla query di ricerca.
     }
+
+    
 
     /**
      * Test of importContacts method, of class Rubric.
@@ -132,13 +136,12 @@ public class RubricTest {
     @Test
     public void testImportContacts() {
         System.out.println("importContacts");
-        String filename = "";
-        Rubric instance = new Rubric();
-        Rubric expResult = null;
-        Rubric result = instance.importContacts(filename);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+        String testFileName = "contatti_test.csv";
+        // Si assume che esista un file valido con dati appropriati
+        Rubric imported = rubric.importContacts(testFileName);
+        assertNotNull(imported); // La rubrica importata non dovrebbe essere null.
+        assertFalse(imported.getContacts().isEmpty()); // La rubrica importata dovrebbe contenere contatti.
     }
 
     /**
@@ -147,11 +150,11 @@ public class RubricTest {
     @Test
     public void testExportContacts() {
         System.out.println("exportContacts");
-        String filename = "";
-        Rubric instance = new Rubric();
-        instance.exportContacts(filename);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+        rubric.addContact(contact);
+
+        String testFileName = "esporta_contatti_test.csv";
+        rubric.exportContacts(testFileName);
     }
 
     /**
@@ -160,12 +163,13 @@ public class RubricTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Rubric instance = new Rubric();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        this.setUp();
+        String result = rubric.toString();
+        assertTrue(result.contains("Fabiano")); // La rappresentazione in stringa dovrebbe includere il nome del contatto.
+        assertTrue(result.contains("Amendola")); // La rappresentazione in stringa dovrebbe includere il cognome del contatto.
+        assertTrue(result.contains("123456789")); // La rappresentazione in stringa dovrebbe includere il numero del contatto.
+        assertTrue(result.contains("fabiano.amendola@mail.com")); // La rappresentazione in stringa dovrebbe includere l'email del contatto.
+
     }
     
 }
