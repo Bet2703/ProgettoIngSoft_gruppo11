@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mycompany.progettoingsoft.Contact;
 
 import org.junit.jupiter.api.Test;
@@ -14,6 +19,7 @@ public class NumberTest {
     private String num2 = "0987654321";
     private String num3 = "3336669990";
     private Number numbers;
+    private Number numbersSet;
     
     public NumberTest() {
     }
@@ -21,40 +27,45 @@ public class NumberTest {
     @BeforeEach
     public void setUp(){
         numbers = new Number( num1, num2, num3 );
+        numbersSet = new Number();
     }
 
     /**
-     * Test del metodo setNumber1, della classe Number.
+     * Test of setNumber1 method, of class Number.
      */
     @Test
     public void testSetNumber1() {
         this.setUp();
         System.out.println("setNumber1");
-        assertEquals(num1, numbers.getNumber1());
+        numbersSet.setNumber1(num1);
+        assertEquals(num1, numbersSet.getNumber1());
     }
 
     /**
-     * Test del metodo setNumber2, della classe Number.
+     * Test of setNumber2 method, of class Number.
      */
     @Test
     public void testSetNumber2() {
         this.setUp();
         System.out.println("setNumber2");
-        assertEquals(num2, numbers.getNumber2());
+        numbersSet.setNumber2(num2);
+        assertEquals(num2, numbersSet.getNumber2());
     }
 
+
     /**
-     * Test del metodo setNumber3, della classe Number.
+     * Test of setNumber3 method, of class Number.
      */
     @Test
     public void testSetNumber3() {
         this.setUp();
         System.out.println("setNumber3");
-        assertEquals(num3, numbers.getNumber3());
+        numbersSet.setNumber3(num3);
+        assertEquals(num3, numbersSet.getNumber3());
     }
 
     /**
-     *Test del metodo getNumbers, della classe Number.
+     * Test of getNumbers method, of class Number.
      */
     @Test
     public void testGetNumbers() {
@@ -65,7 +76,7 @@ public class NumberTest {
     }
 
     /**
-     * Test del metodo getNumber1, della classe Number.
+     * Test of getNumber1 method, of class Number.
      */
     @Test
     public void testGetNumber1() {
@@ -75,7 +86,7 @@ public class NumberTest {
     }
 
     /**
-     * Test del metodo getNumber2, della classe Number.
+     * Test of getNumber2 method, of class Number.
      */
     @Test
     public void testGetNumber2() {
@@ -85,7 +96,7 @@ public class NumberTest {
     }
 
     /**
-     * Test del metodo getNumber3, della classe Number.
+     * Test of getNumber3 method, of class Number.
      */
     @Test
     public void testGetNumber3() {
@@ -95,7 +106,7 @@ public class NumberTest {
     }
 
     /**
-     * Test del metodo toString, della classe Number.
+     * Test of toString method, of class Number.
      */
     @Test
     public void testToString() {
@@ -104,4 +115,5 @@ public class NumberTest {
         String expResult = num1 + ", " + num2 + ", " + num3 + ", ";
         assertEquals(expResult, numbers.toString());
     }
+    
 }
