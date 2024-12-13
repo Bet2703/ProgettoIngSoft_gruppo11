@@ -71,6 +71,7 @@ public class RubricTest {
     public void testModifyContact() {
         System.out.println("modifyContact");
         this.setUp();
+        Contact contact = new Contact("Fabiano", "Amendola", new Number("123456789"), new Mail("fabiano.amendola@mail.com"));
         rubric.addContact(contact);
 
         boolean modified = rubric.modifyContact(contact, "Nello", "Del Mauro", new Number("987654321"), new Mail("nello.delmauro@mail.com"), true);
@@ -78,8 +79,8 @@ public class RubricTest {
         assertTrue(modified); // Il contatto dovrebbe essere modificato con successo.
         assertEquals("Nello", contact.getName()); // Il nome dovrebbe essere aggiornato.
         assertEquals("Del Mauro", contact.getSurname()); // Il cognome dovrebbe essere aggiornato.
-        assertEquals("987654321", contact.getNumbers()); // Il numero dovrebbe essere aggiornato.
-        assertEquals("nello.delmauro@mail.com", contact.getMails()); // L'email dovrebbe essere aggiornata.
+        assertEquals("987654321", contact.getNumbers().getNumber1()); // Il numero dovrebbe essere aggiornato.
+        assertEquals("nello.delmauro@mail.com", contact.getMails().getMail1()); // L'email dovrebbe essere aggiornata.
         assertTrue(contact.isFavourite()); // Lo stato di preferito dovrebbe essere aggiornato.
     }
 
@@ -119,13 +120,15 @@ public class RubricTest {
     @Test
     public void testSearchContact() {
         System.out.println("searchContact");
-        this.setUp();
-          rubric.addContact(contact);
-        rubric.addContact(contact2);
+        Rubric rubrics = new Rubric();
+        Contact contact1 = new Contact("Andrea", "Del Mauro", new Number("123456789"), new Mail("andrea.delmauro@mail.com"));
+        Contact contact3 = new Contact("Benedetta", "Amendola", new Number("987654321"), new Mail("benedetta.amendola@mail.com"));
+        rubrics.addContact(contact1);
+        rubrics.addContact(contact3);
 
-        Rubric result = rubric.searchContact("Andrea");
+        Rubric result = rubrics.searchContact("Andrea");
         assertEquals(1, result.getContacts().size()); // La ricerca dovrebbe restituire un contatto.
-        assertEquals(contact, result.getContacts().get(0)); // Il contatto restituito dovrebbe corrispondere alla query di ricerca.
+        assertEquals(contact1, result.getContacts().get(0)); // Il contatto restituito dovrebbe corrispondere alla query di ricerca.
     }
 
     
