@@ -169,32 +169,37 @@ public class Rubric implements FileHandler {
      */
      @Override
     public Rubric importContacts(String filename) {
+        
         Rubric imported = new Rubric();
+        String nameFile = filename.split("[.]")[0];
+        //System.out.println(nameFile);
+        
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-        String line = br.readLine(); // Legge l'intestazione
-        while ((line = br.readLine()) != null) {
-            String[] fields = line.split("[;]"); // Split gestisce i campi con virgolette
-            if (fields.length >= 4) {
-                String name = fields[0];
-                String surname = fields[1];
-                String[] numberFields = fields[2].split("[,]");
-                String[] mailFields = fields[3].split("[,]");
-                
-                Number numbers = new Number(
-                    numberFields.length > 0 ? numberFields[0] : "",
-                    numberFields.length > 1 ? numberFields[1] : "",
-                    numberFields.length > 2 ? numberFields[2] : ""
-                );
+            String line = br.readLine(); // Legge l'intestazione
+            //System.out.println(line);
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split("[;]"); // Split gestisce i campi con virgolette
+                if (fields.length >= 4) {
+                    String name = fields[0];
+                    String surname = fields[1];
+                    String[] numberFields = fields[2].split("[,]");
+                    String[] mailFields = fields[3].split("[,]");
+                    
+                    Number numbers = new Number(
+                        numberFields.length > 0 ? numberFields[0] : "",
+                        numberFields.length > 1 ? numberFields[1] : "",
+                        numberFields.length > 2 ? numberFields[2] : ""
+                    );
 
-                Mail mails = new Mail(
-                    mailFields.length > 0 ? mailFields[0] : "",
-                    mailFields.length > 1 ? mailFields[1] : "",
-                    mailFields.length > 2 ? mailFields[2] : ""
-                );
+                    Mail mails = new Mail(
+                        mailFields.length > 0 ? mailFields[0] : "",
+                        mailFields.length > 1 ? mailFields[1] : "",
+                        mailFields.length > 2 ? mailFields[2] : ""
+                    );
 
-                Contact contact = new Contact(name, surname, numbers, mails);
-                imported.addContact(contact);
-            }
+                    Contact contact = new Contact(name, surname, numbers, mails);
+                    imported.addContact(contact);
+                }
             }
         } catch (FileNotFoundException e) {
             System.err.println("File non trovato: " + filename);
@@ -204,7 +209,7 @@ public class Rubric implements FileHandler {
             return null;
         }
         return imported;
-}
+    }
 
     /**
      * @brief Metodo dell'interfaccia FileHandler, con implementazione per esportare i contatti.
@@ -234,7 +239,7 @@ public class Rubric implements FileHandler {
             Logger.getLogger(Rubric.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Rubric");
