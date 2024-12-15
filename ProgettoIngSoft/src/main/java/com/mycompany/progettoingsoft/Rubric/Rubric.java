@@ -107,6 +107,8 @@ public class Rubric implements FileHandler {
             i=true;
             c.setFavourite(newFavourite);
         }
+        
+        this.contacts.sort(null);
         return i;
     }
 	
